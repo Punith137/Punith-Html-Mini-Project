@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LuxeStay — India's Premier Hotel Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --purple-deep: #2d1b4e;
+  --purple-dark: #1a0f3d;
+  --purple-mid: #3d1f6e;
+  --purple-accent: #a855f7;
+  --purple-bright: #c084fc;
+  --purple-glow: #7c3aed;
+  --gold: #f5c842;
+  --gold-light: #fde68a;
+  --cream: #fdf8f0;
+  --white: #ffffff;
+  --muted: #9ca3af;
+  --sidebar-w: 240px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',Arial,sans-serif;background:linear-gradient(135deg,#2d1b4e,#1a0f3d);color:white;min-height:100vh}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:#1a0f3d}
+::-webkit-scrollbar-thumb{background:rgba(168,85,247,0.4);border-radius:2px}
+
+/* ── HEADER ── */
+header{position:fixed;top:0;width:100%;background:rgba(45,27,78,0.95);backdrop-filter:blur(20px);padding:0 36px;height:68px;display:flex;justify-content:space-between;align-items:center;color:white;z-index:500;border-bottom:1px solid rgba(168,85,247,0.18);box-shadow:0 4px 40px rgba(124,58,237,0.15)}
+.logo{font-size:28px;font-weight:bold;background:linear-gradient(135deg,#a855f7,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;cursor:pointer}
+.header-subtitle{font-size:11px;color:rgba(168,85,247,0.6);letter-spacing:0.15em;text-transform:uppercase;font-weight:300}
+.header-right{display:flex;align-items:center;gap:12px}
+.user-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#a855f7,#7c3aed);display:none;align-items:center;justify-content:center;font-size:14px;font-weight:600;cursor:pointer;border:2px solid rgba(168,85,247,0.4)}
+.user-name-header{font-size:13px;color:#c084fc;display:none;font-weight:400}
+.sign-in-btn{background:linear-gradient(135deg,#a855f7,#7c3aed);border:none;color:white;padding:9px 22px;border-radius:10px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.03em;transition:all 0.3s;box-shadow:0 4px 20px rgba(124,58,237,0.3)}
+.sign-in-btn:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(124,58,237,0.5)}
+.my-bookings-btn{background:transparent;border:1px solid rgba(168,85,247,0.35);color:#c084fc;padding:9px 18px;border-radius:10px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;display:none;transition:all 0.3s}
+.my-bookings-btn:hover{background:rgba(168,85,247,0.1);border-color:rgba(168,85,247,0.6)}
+
+/* ── SIDEBAR ── */
+.sidebar{position:fixed;left:0;top:68px;width:var(--sidebar-w);height:calc(100vh - 68px);background:linear-gradient(180deg,#1a0f3d 0%,#0f0826 100%);padding:24px 16px;border-right:1px solid rgba(168,85,247,0.12);z-index:100;overflow-y:auto;overflow-x:hidden}
+.sidebar-section-label{font-size:9px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:rgba(168,85,247,0.5);padding:8px 16px 4px;margin-top:12px;display:block}
+.sidebar a{display:flex;align-items:center;gap:10px;color:#c084fc;margin:2px 0;text-decoration:none;padding:9px 14px;border-radius:10px;font-size:13px;font-weight:300;transition:all 0.2s}
+.sidebar a:hover{color:white;background:rgba(168,85,247,0.12)}
+.sidebar-promo{background:linear-gradient(135deg,rgba(168,85,247,0.15),rgba(124,58,237,0.1));border:1px solid rgba(168,85,247,0.2);border-radius:12px;padding:16px;margin-top:20px;text-align:center}
+.sidebar-promo-title{font-size:13px;font-weight:600;color:var(--gold-light);margin-bottom:6px;font-family:'Playfair Display',serif}
+.sidebar-promo-text{font-size:11px;color:rgba(168,85,247,0.6);line-height:1.5}
+
+/* ── MAIN ── */
+main{margin-left:240px;padding:100px 48px 80px;min-height:100vh}
+@media(max-width:768px){main{margin-left:0;padding:80px 16px 60px}.sidebar{display:none}}
+
+/* ── HERO ── */
+.hero-area{margin-bottom:40px;padding:20px 0}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.25);border-radius:20px;padding:6px 16px;margin-bottom:20px}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:#a855f7;animation:pulse 2s infinite}
+.hero-badge-text{font-size:11px;letter-spacing:0.1em;color:rgba(168,85,247,0.8)}
+.hero-title-gold{background:linear-gradient(135deg,#f5c842,#fde68a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-subtitle{font-size:16px;color:rgba(255,255,255,0.55);font-weight:300;max-width:600px;line-height:1.7;margin:16px 0 28px}
+.stats-row{display:grid;grid-template-columns:repeat(4,auto);gap:16px;max-width:480px}
+.stat-card{background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.15);border-radius:12px;padding:14px 20px;text-align:center}
+.stat-num{display:block;font-size:22px;font-weight:700;color:var(--gold-light);font-family:'Playfair Display',serif}
+.stat-label{font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase}
+
+/* ── SEARCH ── */
+.search-form-card{background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.2);border-radius:20px;padding:28px 32px;margin-bottom:28px;backdrop-filter:blur(10px)}
+.form-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:end}
+.form-label-styled{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(168,85,247,0.6);display:block;margin-bottom:6px;font-weight:500}
+input[type=text],input[type=email],input[type=date],input[type=password],input[type=number],select{padding:12px 16px;border-radius:12px;border:1.5px solid rgba(168,85,247,0.25);width:100%;background:rgba(255,255,255,0.04);color:white;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;outline:none;transition:border 0.3s}
+input:focus,select:focus{border-color:rgba(168,85,247,0.7);background:rgba(168,85,247,0.05)}
+input::placeholder{color:rgba(255,255,255,0.25)}
+select option{background:#1a0f3d;color:white}
+.search-btn-row{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.search-tip{font-size:11px;color:rgba(168,85,247,0.5)}
+.premium-btn{background:linear-gradient(135deg,#a855f7,#7c3aed);border:none;color:white;padding:13px 32px;border-radius:12px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.05em;transition:all 0.3s;box-shadow:0 4px 20px rgba(124,58,237,0.35);width:100%}
+.premium-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(124,58,237,0.55)}
+
+/* ── FILTERS ── */
+.quick-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.filter-chip{background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.2);color:rgba(168,85,247,0.7);padding:7px 16px;border-radius:20px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.25s;font-weight:300}
+.filter-chip:hover,.filter-chip.active{background:rgba(168,85,247,0.15);border-color:rgba(168,85,247,0.5);color:white}
+
+/* ── HOTEL GRID ── */
+.section-heading{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.section-line{flex:1;height:1px;background:linear-gradient(90deg,rgba(168,85,247,0.3),transparent)}
+.hotel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.hotel-card{background:rgba(255,255,255,0.035);border:1px solid rgba(168,85,247,0.15);border-radius:20px;overflow:hidden;cursor:pointer;transition:all 0.35s;backdrop-filter:blur(10px)}
+.hotel-card:hover{transform:translateY(-6px);border-color:rgba(168,85,247,0.4);box-shadow:0 20px 60px rgba(0,0,0,0.4)}
+.hotel-img{height:200px;position:relative;overflow:hidden;background:#1a0f3d}
+.hotel-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
+.hotel-card:hover .hotel-img img{transform:scale(1.07)}
+.hotel-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,8,30,0.85) 0%,rgba(15,8,30,0.2) 55%,transparent 100%);z-index:1}
+.hotel-badge{position:absolute;top:12px;left:12px;background:rgba(245,200,66,0.15);border:1px solid rgba(245,200,66,0.35);color:var(--gold-light);padding:3px 10px;border-radius:6px;font-size:10px;font-weight:500;letter-spacing:0.08em;z-index:2}
+.hotel-stars{position:absolute;bottom:12px;right:12px;color:var(--gold);font-size:12px;z-index:2}
+.hotel-body{padding:16px 18px}
+.hotel-city{font-size:10px;color:rgba(168,85,247,0.6);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px}
+.hotel-name-card{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:white;margin-bottom:6px;line-height:1.3}
+.hotel-desc-card{font-size:12px;color:rgba(255,255,255,0.45);font-weight:300;line-height:1.6;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.hotel-amenities-row{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+.amenity-pill{background:rgba(168,85,247,0.1);border:1px solid rgba(168,85,247,0.2);color:rgba(168,85,247,0.7);padding:2px 8px;border-radius:4px;font-size:10px;font-weight:300}
+.hotel-footer-card{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(168,85,247,0.12);padding-top:10px}
+.hotel-price-label{font-size:10px;color:var(--muted);display:block}
+.hotel-price{font-size:16px;font-weight:700;color:var(--gold-light);font-family:'Playfair Display',serif}
+.hotel-book-btn{background:linear-gradient(135deg,rgba(168,85,247,0.25),rgba(124,58,237,0.2));border:1px solid rgba(168,85,247,0.35);color:#c084fc;padding:7px 16px;border-radius:8px;font-size:11px;cursor:pointer;transition:all 0.3s;font-family:'DM Sans',sans-serif;font-weight:400;letter-spacing:0.08em;text-transform:uppercase}
+.hotel-book-btn:hover{background:linear-gradient(135deg,#a855f7,#7c3aed);color:white;border-color:transparent}
+.hotel-rating-badge{position:absolute;top:12px;right:12px;background:rgba(26,15,61,0.9);border:1px solid rgba(168,85,247,0.3);border-radius:8px;padding:4px 8px;font-size:11px;color:var(--gold-light);z-index:2;font-weight:600}
+
+/* ── MODAL OVERLAY ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:1000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+.modal-overlay.show{display:flex}
+.modal-box{background:linear-gradient(135deg,#1a0f3d,#0f0826);border:1px solid rgba(168,85,247,0.25);border-radius:24px;padding:40px;width:440px;max-width:95vw;position:relative;animation:modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1)}
+@keyframes modalIn{from{opacity:0;transform:scale(0.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:rgba(168,85,247,0.5);font-size:20px;cursor:pointer;padding:4px 8px;border-radius:8px;transition:all 0.2s}
+.modal-close:hover{color:white;background:rgba(168,85,247,0.15)}
+.modal-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:white;margin-bottom:6px}
+.modal-subtitle{font-size:13px;color:rgba(168,85,247,0.6);margin-bottom:28px}
+.modal-tabs{display:flex;gap:0;margin-bottom:24px;border-bottom:1px solid rgba(168,85,247,0.2)}
+.modal-tab{flex:1;padding:10px;text-align:center;font-size:13px;cursor:pointer;color:rgba(168,85,247,0.5);border:none;background:none;transition:all 0.2s;border-bottom:2px solid transparent;font-family:'DM Sans',sans-serif}
+.modal-tab.active{color:white;border-bottom-color:#a855f7}
+.tab-pane{display:none}.tab-pane.active{display:block}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(168,85,247,0.6);margin-bottom:6px;font-weight:500}
+.auth-btn{width:100%;padding:14px;background:linear-gradient(135deg,#a855f7,#7c3aed);border:none;color:white;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:6px;transition:all 0.3s;box-shadow:0 4px 20px rgba(124,58,237,0.35)}
+.auth-btn:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(124,58,237,0.5)}
+.divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:rgba(168,85,247,0.35);font-size:12px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(168,85,247,0.2)}
+.google-btn{width:100%;padding:12px;background:rgba(255,255,255,0.06);border:1px solid rgba(168,85,247,0.25);color:white;border-radius:12px;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;transition:all 0.3s}
+.google-btn:hover{background:rgba(255,255,255,0.1);border-color:rgba(168,85,247,0.5)}
+.auth-error{color:#f87171;font-size:12px;margin-top:-8px;margin-bottom:8px;display:none}
+.auth-error.show{display:block}
+
+/* ── HOTEL DETAIL PAGE ── */
+.detail-page{display:none;position:fixed;inset:0;background:linear-gradient(135deg,#2d1b4e,#1a0f3d);z-index:600;overflow-y:auto}
+.detail-page.show{display:block}
+.detail-header{position:sticky;top:0;background:rgba(45,27,78,0.95);backdrop-filter:blur(20px);padding:0 32px;height:64px;display:flex;align-items:center;gap:16px;border-bottom:1px solid rgba(168,85,247,0.18);z-index:10}
+.detail-back{background:none;border:1px solid rgba(168,85,247,0.3);color:#c084fc;padding:8px 16px;border-radius:10px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:6px;transition:all 0.2s;font-family:'DM Sans',sans-serif}
+.detail-back:hover{background:rgba(168,85,247,0.12);color:white}
+.detail-hotel-name-header{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:white}
+
+/* Hero Gallery */
+.detail-gallery{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:280px 180px;gap:6px;margin-bottom:0;height:460px}
+.gallery-main{grid-row:1/3;position:relative;overflow:hidden}
+.gallery-main img,.gallery-thumb img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+.gallery-thumb{position:relative;overflow:hidden;cursor:pointer}
+.gallery-thumb:hover img{transform:scale(1.05)}
+.gallery-main img{cursor:pointer}
+.gallery-main:hover img{transform:scale(1.03)}
+.gallery-count{position:absolute;bottom:14px;right:14px;background:rgba(0,0,0,0.7);color:white;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer;border:1px solid rgba(255,255,255,0.2)}
+
+/* Detail Body */
+.detail-body{max-width:1100px;margin:0 auto;padding:32px 40px 80px}
+.detail-grid{display:grid;grid-template-columns:1fr 360px;gap:40px;margin-top:32px}
+.detail-left{}
+.detail-right{}
+
+/* Sticky booking panel */
+.booking-panel{background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.25);border-radius:20px;padding:28px;position:sticky;top:80px}
+.booking-panel-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:white;margin-bottom:4px}
+.booking-panel-price{font-size:28px;font-weight:700;color:var(--gold-light);font-family:'Playfair Display',serif}
+.booking-panel-price span{font-size:13px;color:var(--muted);font-weight:300}
+.booking-panel-rating{display:flex;align-items:center;gap:6px;margin:8px 0 20px}
+.rating-stars{color:var(--gold);font-size:14px}
+.rating-count{font-size:12px;color:var(--muted)}
+.book-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.book-form-row.single{grid-template-columns:1fr}
+.book-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(168,85,247,0.6);display:block;margin-bottom:4px}
+.book-now-btn{width:100%;padding:16px;background:linear-gradient(135deg,#a855f7,#7c3aed);border:none;color:white;border-radius:14px;font-size:15px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.3s;margin-top:12px;box-shadow:0 6px 24px rgba(124,58,237,0.4);letter-spacing:0.05em}
+.book-now-btn:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(124,58,237,0.6)}
+.booking-total{background:rgba(168,85,247,0.08);border-radius:10px;padding:12px 16px;margin-top:12px;display:none}
+.booking-total table{width:100%;font-size:13px}
+.booking-total td{padding:4px 0;color:rgba(255,255,255,0.6)}
+.booking-total td:last-child{text-align:right;color:white}
+.booking-total .total-row td{font-weight:600;color:var(--gold-light);border-top:1px solid rgba(168,85,247,0.2);padding-top:8px;margin-top:4px;font-size:14px}
+
+/* Hotel Info sections */
+.detail-section{margin-bottom:36px}
+.detail-section h3{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:white;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid rgba(168,85,247,0.15)}
+.about-text{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.8;font-weight:300}
+.amenities-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.amenity-item{background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.15);border-radius:12px;padding:14px;text-align:center}
+.amenity-icon{font-size:22px;margin-bottom:6px}
+.amenity-name{font-size:12px;color:rgba(255,255,255,0.7);font-weight:300}
+
+/* Rooms */
+.rooms-list{display:flex;flex-direction:column;gap:16px}
+.room-card{background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.18);border-radius:16px;overflow:hidden;display:grid;grid-template-columns:200px 1fr auto;align-items:stretch}
+.room-img{height:140px;object-fit:cover;width:200px}
+.room-info{padding:16px 20px}
+.room-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:white;margin-bottom:6px}
+.room-desc{font-size:12px;color:rgba(255,255,255,0.5);margin-bottom:10px;line-height:1.5}
+.room-features{display:flex;flex-wrap:wrap;gap:6px}
+.room-feature{background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.15);color:rgba(168,85,247,0.7);padding:3px 8px;border-radius:4px;font-size:10px}
+.room-pricing{padding:16px 20px;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;border-left:1px solid rgba(168,85,247,0.12);min-width:160px}
+.room-price{font-size:20px;font-weight:700;color:var(--gold-light);font-family:'Playfair Display',serif;text-align:right}
+.room-price-label{font-size:10px;color:var(--muted);margin-bottom:2px}
+.room-avail{font-size:11px;color:#4ade80;margin:6px 0}
+.select-room-btn{background:linear-gradient(135deg,#a855f7,#7c3aed);border:none;color:white;padding:10px 20px;border-radius:10px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:500;margin-top:10px;transition:all 0.3s}
+.select-room-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,58,237,0.4)}
+.select-room-btn.selected{background:linear-gradient(135deg,#4ade80,#16a34a);box-shadow:0 6px 20px rgba(74,222,128,0.3)}
+
+/* Reviews */
+.reviews-list{display:flex;flex-direction:column;gap:16px}
+.review-card{background:rgba(255,255,255,0.03);border:1px solid rgba(168,85,247,0.12);border-radius:14px;padding:18px}
+.review-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.reviewer-name{font-size:14px;font-weight:500;color:white}
+.reviewer-date{font-size:11px;color:var(--muted)}
+.review-stars{color:var(--gold);font-size:13px;margin:4px 0}
+.review-text{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.7;font-weight:300}
+.rating-overview{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;background:rgba(168,85,247,0.06);border-radius:16px;padding:20px;margin-bottom:24px}
+.big-rating{text-align:center}
+.big-rating-num{font-size:52px;font-weight:700;color:var(--gold-light);font-family:'Playfair Display',serif;line-height:1}
+.big-rating-stars{color:var(--gold);font-size:18px;margin:4px 0}
+.big-rating-count{font-size:12px;color:var(--muted)}
+.rating-bars{display:flex;flex-direction:column;gap:8px}
+.rating-bar-row{display:flex;align-items:center;gap:10px;font-size:12px;color:rgba(255,255,255,0.5)}
+.rating-bar-bg{flex:1;height:6px;background:rgba(168,85,247,0.15);border-radius:3px;overflow:hidden}
+.rating-bar-fill{height:100%;background:linear-gradient(90deg,#a855f7,#f5c842);border-radius:3px;transition:width 1s ease}
+.rating-label{width:12px;text-align:right}
+
+/* Booking confirmation modal */
+.confirm-modal{background:linear-gradient(135deg,#1a0f3d,#0f0826);border:1px solid rgba(74,222,128,0.25);border-radius:24px;padding:40px;width:480px;max-width:95vw;position:relative;text-align:center;animation:modalIn 0.3s cubic-bezier(0.34,1.56,0.64,1)}
+.confirm-icon{font-size:56px;margin-bottom:16px}
+.confirm-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:white;margin-bottom:8px}
+.confirm-subtitle{font-size:14px;color:rgba(255,255,255,0.55);margin-bottom:24px;line-height:1.6}
+.booking-ref{background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:12px;padding:16px;margin-bottom:24px}
+.booking-ref-num{font-size:22px;font-weight:700;color:#4ade80;font-family:'Playfair Display',serif;letter-spacing:2px}
+.booking-ref-label{font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px}
+.booking-details-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:left;margin-bottom:24px}
+.booking-detail-item{background:rgba(255,255,255,0.03);border-radius:10px;padding:12px 14px}
+.bd-label{font-size:10px;color:rgba(168,85,247,0.6);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3px}
+.bd-value{font-size:14px;color:white;font-weight:500}
+
+/* Photo lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:2000;display:none;align-items:center;justify-content:center;flex-direction:column}
+.lightbox.show{display:flex}
+.lightbox img{max-width:90vw;max-height:80vh;object-fit:contain;border-radius:8px}
+.lightbox-close{position:absolute;top:20px;right:20px;background:none;border:none;color:white;font-size:32px;cursor:pointer;opacity:0.7}
+.lightbox-close:hover{opacity:1}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:white;font-size:24px;padding:12px 16px;cursor:pointer;border-radius:8px;backdrop-filter:blur(4px)}
+.lightbox-nav.prev{left:20px}.lightbox-nav.next{right:20px}
+.lightbox-counter{position:absolute;bottom:20px;color:rgba(255,255,255,0.6);font-size:13px}
+
+/* My Bookings Panel */
+.bookings-panel{background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.2);border-radius:20px;padding:28px;max-width:700px;margin:0 auto}
+.booking-item{background:rgba(168,85,247,0.06);border:1px solid rgba(168,85,247,0.15);border-radius:14px;padding:16px 20px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;margin-bottom:12px}
+.booking-item-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:white}
+.booking-item-details{font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px}
+.booking-status{padding:4px 10px;border-radius:6px;font-size:11px;font-weight:500}
+.status-confirmed{background:rgba(74,222,128,0.15);color:#4ade80;border:1px solid rgba(74,222,128,0.25)}
+.status-pending{background:rgba(251,191,36,0.15);color:#fbbf24;border:1px solid rgba(251,191,36,0.25)}
+
+/* Toast */
+.toast{position:fixed;bottom:40px;right:28px;background:rgba(26,15,61,0.97);border:1px solid rgba(168,85,247,0.3);border-left:3px solid var(--gold);padding:14px 20px;border-radius:12px;z-index:9999;transform:translateX(130%);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);min-width:240px;backdrop-filter:blur(20px)}
+.toast.show{transform:translateX(0)}
+.toast-title{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:var(--gold-light);display:block;margin-bottom:2px}
+.toast-msg{font-size:12px;color:var(--muted);font-weight:300}
+
+/* Misc */
+.no-results{text-align:center;padding:80px 40px;display:none}
+.no-results.show{display:block}
+.no-results-icon{font-size:56px;margin-bottom:16px;opacity:0.4}
+.no-results h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:white;margin-bottom:8px}
+.no-results p{font-size:13px;color:var(--muted);font-weight:300}
+footer{background:rgba(0,0,0,0.3);text-align:center;padding:28px;font-size:12px;color:rgba(168,85,247,0.4);border-top:1px solid rgba(168,85,247,0.1);margin-left:240px}
+@media(max-width:768px){footer{margin-left:0}}
+.bg-blob{position:fixed;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;opacity:0.12}
+.bg-blob-1{width:600px;height:600px;background:#4c1d95;top:-200px;left:-200px}
+.bg-blob-2{width:500px;height:500px;background:#7c3aed;bottom:-100px;right:-100px}
+.bg-blob-3{width:400px;height:400px;background:#6d28d9;top:40%;left:40%}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* Scroll-triggered sticky booking bar */
+.sticky-book-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(26,15,61,0.97);border-top:1px solid rgba(168,85,247,0.25);padding:16px 40px;display:none;align-items:center;justify-content:space-between;z-index:700;backdrop-filter:blur(20px);box-shadow:0 -8px 40px rgba(0,0,0,0.4)}
+.sticky-book-bar.show{display:flex}
+.sticky-hotel-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:white}
+.sticky-price{font-size:20px;font-weight:700;color:var(--gold-light);font-family:'Playfair Display',serif}
+.sticky-book-btn{background:linear-gradient(135deg,#a855f7,#7c3aed);border:none;color:white;padding:12px 32px;border-radius:12px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.3s;box-shadow:0 4px 20px rgba(124,58,237,0.4)}
+.sticky-book-btn:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(124,58,237,0.6)}
+
+/* Selected room highlight */
+.room-selected-badge{background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);color:#4ade80;padding:8px 16px;border-radius:8px;font-size:13px;text-align:center;margin-top:12px;display:none}
+.room-selected-badge.show{display:block}
+</style>
+</head>
+<body>
+<div class="bg-blob bg-blob-1"></div>
+<div class="bg-blob bg-blob-2"></div>
+<div class="bg-blob bg-blob-3"></div>
+
+<!-- ══ NAVIGATION ══ -->
+<header>
+  <div class="logo" onclick="goHome()">✨ LuxeStay</div>
+  <div class="header-subtitle">Premium Hotel Booking</div>
+  <div class="header-right">
+    <button class="my-bookings-btn" id="myBookingsBtn" onclick="showMyBookings()">📋 My Bookings</button>
+    <div class="user-avatar" id="userAvatar" onclick="showMyBookings()"></div>
+    <span class="user-name-header" id="userNameHeader"></span>
+    <button class="sign-in-btn" id="signInBtn" onclick="openSignIn()">Sign In</button>
+  </div>
+</header>
+
+<!-- ══ SIDEBAR ══ -->
+<div class="sidebar">
+  <span class="sidebar-section-label">Menu</span>
+  <a href="#" onclick="goHome()">🏠 Home</a>
+  <a href="#search">🔍 Search Hotels</a>
+  <a href="#hotels">🏨 All Hotels</a>
+  <a href="#" onclick="showMyBookings()">📋 My Bookings</a>
+
+  <span class="sidebar-section-label">Popular Cities</span>
+  <a href="#" onclick="filterBySidebar('Mumbai')">🌊 Mumbai</a>
+  <a href="#" onclick="filterBySidebar('Delhi')">🏛️ Delhi</a>
+  <a href="#" onclick="filterBySidebar('Goa')">🌴 Goa</a>
+  <a href="#" onclick="filterBySidebar('Jaipur')">🏰 Jaipur</a>
+  <a href="#" onclick="filterBySidebar('Udaipur')">🏯 Udaipur</a>
+  <a href="#" onclick="filterBySidebar('Hyderabad')">🌆 Hyderabad</a>
+
+  <span class="sidebar-section-label">Andhra Pradesh</span>
+  <a href="#" onclick="filterBySidebar('Andhra Pradesh')" style="color:#fde68a">🌟 All AP</a>
+  <a href="#" onclick="filterBySidebar('Visakhapatnam')">🌊 Visakhapatnam</a>
+  <a href="#" onclick="filterBySidebar('Vijayawada')">🏙️ Vijayawada</a>
+  <a href="#" onclick="filterBySidebar('Tirupati')">🛕 Tirupati</a>
+  <a href="#" onclick="filterBySidebar('Guntur')">🌶️ Guntur</a>
+  <a href="#" onclick="filterBySidebar('Rajahmundry')">🌉 Rajahmundry</a>
+  <a href="#" onclick="filterBySidebar('Nellore')">🏖️ Nellore</a>
+  <a href="#" onclick="filterBySidebar('Kurnool')">🏔️ Kurnool</a>
+
+  <span class="sidebar-section-label">Tamil Nadu</span>
+  <a href="#" onclick="filterBySidebar('Tamil Nadu')" style="color:#fde68a">🌟 All TN</a>
+  <a href="#" onclick="filterBySidebar('Chennai')">🏛️ Chennai</a>
+  <a href="#" onclick="filterBySidebar('Coimbatore')">🏭 Coimbatore</a>
+  <a href="#" onclick="filterBySidebar('Madurai')">🛕 Madurai</a>
+  <a href="#" onclick="filterBySidebar('Ooty')">🌿 Ooty</a>
+  <a href="#" onclick="filterBySidebar('Trichy')">⛩️ Trichy</a>
+  <a href="#" onclick="filterBySidebar('Thanjavur')">🏯 Thanjavur</a>
+  <a href="#" onclick="filterBySidebar('Kodaikanal')">🌄 Kodaikanal</a>
+  <a href="#" onclick="filterBySidebar('Salem')">🏙️ Salem</a>
+  <a href="#" onclick="filterBySidebar('Vellore')">🏰 Vellore</a>
+  <a href="#" onclick="filterBySidebar('Tirunelveli')">🌅 Tirunelveli</a>
+  <a href="#" onclick="filterBySidebar('Rameswaram')">🌊 Rameswaram</a>
+  <a href="#" onclick="filterBySidebar('Kanyakumari')">🌅 Kanyakumari</a>
+
+  <div class="sidebar-promo">
+    <div class="sidebar-promo-title">✦ Members Save 20%</div>
+    <div class="sidebar-promo-text">Sign in for exclusive rates and priority booking.</div>
+  </div>
+</div>
+
+<!-- ══ MAIN CONTENT ══ -->
+<main id="mainContent">
+  <!-- HERO -->
+  <div class="hero-area">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span class="hero-badge-text">India's Premier Hotel Platform</span>
+    </div>
+    <h1 style="font-size:48px;font-weight:900;letter-spacing:-2px;font-family:'Playfair Display',serif;color:#fff;line-height:1.1">
+      Discover Your<br><span class="hero-title-gold">Perfect Stay</span>
+    </h1>
+    <p class="hero-subtitle">Book luxury hotels across India — from palace suites in Rajasthan to oceanfront retreats in Goa. Every stay, extraordinary.</p>
+    <div class="stats-row">
+      <div class="stat-card"><span class="stat-num">131+</span><span class="stat-label">Hotels</span></div>
+      <div class="stat-card"><span class="stat-num">45</span><span class="stat-label">Cities</span></div>
+      <div class="stat-card"><span class="stat-num">4.9★</span><span class="stat-label">Avg Rating</span></div>
+      <div class="stat-card"><span class="stat-num">50K+</span><span class="stat-label">Guests</span></div>
+    </div>
+  </div>
+
+  <!-- SEARCH -->
+  <div id="search" class="search-form-card">
+    <div class="section-heading" style="margin-bottom:20px">
+      <h2 style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:white">Search Hotels</h2>
+      <div class="section-line"></div>
+    </div>
+    <form onsubmit="searchHotels(event)">
+      <div class="form-grid">
+        <div>
+          <label class="form-label-styled">Location</label>
+          <input type="text" id="searchCity" placeholder="City or hotel name" oninput="liveSearch()">
+        </div>
+        <div>
+          <label class="form-label-styled">Check In</label>
+          <input type="date" id="checkIn">
+        </div>
+        <div>
+          <label class="form-label-styled">Check Out</label>
+          <input type="date" id="checkOut">
+        </div>
+        <div>
+          <label class="form-label-styled">Guests</label>
+          <select id="guests">
+            <option>1 Guest</option><option>2 Guests</option><option>3 Guests</option><option>4+ Guests</option>
+          </select>
+        </div>
+        <div class="search-btn-row" style="grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center">
+          <span class="search-tip">✦ 131+ properties across India</span>
+          <button type="submit" class="premium-btn" style="width:auto;padding:13px 40px">Search Hotels</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="quick-filters">
+    <button class="filter-chip active" onclick="filterByCity('all',this)">🇮🇳 All India</button>
+    <button class="filter-chip" onclick="filterByCity('Mumbai',this)">Mumbai</button>
+    <button class="filter-chip" onclick="filterByCity('Delhi',this)">Delhi</button>
+    <button class="filter-chip" onclick="filterByCity('Goa',this)">Goa</button>
+    <button class="filter-chip" onclick="filterByCity('Jaipur',this)">Jaipur</button>
+    <button class="filter-chip" onclick="filterByCity('Udaipur',this)">Udaipur</button>
+    <button class="filter-chip" onclick="filterByCity('Kerala',this)">Kerala</button>
+    <button class="filter-chip" onclick="filterByCity('Bengaluru',this)">Bengaluru</button>
+    <button class="filter-chip" onclick="filterByCity('Hyderabad',this)">Hyderabad</button>
+    <button class="filter-chip" onclick="filterByCity('Kolkata',this)">Kolkata</button>
+    <button class="filter-chip" onclick="filterByCity('Agra',this)">Agra</button>
+    <button class="filter-chip" style="border-color:rgba(245,200,66,0.4);color:#fde68a" onclick="filterByState('Andhra Pradesh',this)">★ Andhra Pradesh</button>
+    <button class="filter-chip" onclick="filterByCity('Visakhapatnam',this)">Visakhapatnam</button>
+    <button class="filter-chip" onclick="filterByCity('Vijayawada',this)">Vijayawada</button>
+    <button class="filter-chip" onclick="filterByCity('Tirupati',this)">Tirupati</button>
+    <button class="filter-chip" onclick="filterByCity('Guntur',this)">Guntur</button>
+    <button class="filter-chip" onclick="filterByCity('Rajahmundry',this)">Rajahmundry</button>
+    <button class="filter-chip" onclick="filterByCity('Nellore',this)">Nellore</button>
+    <button class="filter-chip" onclick="filterByCity('Kurnool',this)">Kurnool</button>
+    <button class="filter-chip" style="border-color:rgba(245,200,66,0.4);color:#fde68a" onclick="filterByState('Tamil Nadu',this)">★ Tamil Nadu</button>
+    <button class="filter-chip" onclick="filterByCity('Chennai',this)">Chennai</button>
+    <button class="filter-chip" onclick="filterByCity('Coimbatore',this)">Coimbatore</button>
+    <button class="filter-chip" onclick="filterByCity('Madurai',this)">Madurai</button>
+    <button class="filter-chip" onclick="filterByCity('Ooty',this)">Ooty</button>
+    <button class="filter-chip" onclick="filterByCity('Trichy',this)">Trichy</button>
+    <button class="filter-chip" onclick="filterByCity('Thanjavur',this)">Thanjavur</button>
+    <button class="filter-chip" onclick="filterByCity('Kodaikanal',this)">Kodaikanal</button>
+    <button class="filter-chip" onclick="filterByCity('Salem',this)">Salem</button>
+    <button class="filter-chip" onclick="filterByCity('Vellore',this)">Vellore</button>
+    <button class="filter-chip" onclick="filterByCity('Tirunelveli',this)">Tirunelveli</button>
+    <button class="filter-chip" onclick="filterByCity('Rameswaram',this)">Rameswaram</button>
+    <button class="filter-chip" onclick="filterByCity('Kanyakumari',this)">Kanyakumari</button>
+  </div>
+
+  <!-- HOTEL GRID -->
+  <div class="hotel-grid-section" id="hotels">
+    <div class="section-heading">
+      <h2 id="resultsHeading" style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:white">Featured Properties</h2>
+      <div class="section-line"></div>
+      <span id="resultsCount" style="font-size:12px;color:rgba(168,85,247,0.6);white-space:nowrap">131 hotels</span>
+    </div>
+    <div class="hotel-grid" id="hotelGrid"></div>
+    <div class="no-results" id="noResults">
+      <div class="no-results-icon">🔍</div>
+      <h3>No hotels found</h3>
+      <p>Try a different city or clear your search</p>
+    </div>
+  </div>
+</main>
+
+<!-- ══ HOTEL DETAIL PAGE ══ -->
+<div class="detail-page" id="detailPage">
+  <div class="detail-header">
+    <button class="detail-back" onclick="closeDetail()">← Back</button>
+    <div class="detail-hotel-name-header" id="detailHotelNameHeader"></div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+      <span id="detailStarsHeader" style="color:var(--gold);font-size:14px"></span>
+      <span id="detailBadgeHeader" style="background:rgba(245,200,66,0.15);border:1px solid rgba(245,200,66,0.35);color:var(--gold-light);padding:3px 10px;border-radius:6px;font-size:10px;font-weight:500"></span>
+    </div>
+  </div>
+
+  <!-- Gallery -->
+  <div class="detail-gallery" id="detailGallery"></div>
+
+  <!-- Body -->
+  <div class="detail-body">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px">
+      <div>
+        <div style="font-size:12px;color:rgba(168,85,247,0.6);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px" id="detailCity"></div>
+        <h1 id="detailName" style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:white;margin-bottom:8px"></h1>
+        <div id="detailRatingRow" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"></div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:11px;color:var(--muted)">Starting from</div>
+        <div id="detailPriceHero" style="font-size:36px;font-weight:700;color:var(--gold-light);font-family:'Playfair Display',serif"></div>
+        <div style="font-size:11px;color:var(--muted)">per night</div>
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-left">
+        <!-- About -->
+        <div class="detail-section">
+          <h3>About This Property</h3>
+          <p class="about-text" id="detailDesc"></p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px" id="detailAmenityPills"></div>
+        </div>
+
+        <!-- Amenities -->
+        <div class="detail-section">
+          <h3>Amenities & Facilities</h3>
+          <div class="amenities-grid" id="detailAmenitiesGrid"></div>
+        </div>
+
+        <!-- Rooms -->
+        <div class="detail-section">
+          <h3>Available Rooms</h3>
+          <div class="rooms-list" id="detailRooms"></div>
+        </div>
+
+        <!-- Ratings -->
+        <div class="detail-section">
+          <h3>Guest Reviews</h3>
+          <div class="rating-overview">
+            <div class="big-rating">
+              <div class="big-rating-num" id="bigRatingNum"></div>
+              <div class="big-rating-stars" id="bigRatingStars"></div>
+              <div class="big-rating-count" id="bigRatingCount"></div>
+            </div>
+            <div class="rating-bars" id="ratingBars"></div>
+          </div>
+          <div class="reviews-list" id="reviewsList"></div>
+        </div>
+      </div>
+
+      <div class="detail-right">
+        <!-- Booking Panel -->
+        <div class="booking-panel" id="bookingPanel">
+          <div class="booking-panel-title" id="bpHotelName"></div>
+          <div class="booking-panel-price" id="bpPrice"></div>
+          <div class="booking-panel-rating">
+            <span class="rating-stars" id="bpStars"></span>
+            <span class="rating-count" id="bpRating"></span>
+          </div>
+          <div class="book-form-row">
+            <div>
+              <span class="book-label">Check In</span>
+              <input type="date" id="bpCheckIn" onchange="calcTotal()">
+            </div>
+            <div>
+              <span class="book-label">Check Out</span>
+              <input type="date" id="bpCheckOut" onchange="calcTotal()">
+            </div>
+          </div>
+          <div class="book-form-row single">
+            <div>
+              <span class="book-label">Guests</span>
+              <select id="bpGuests">
+                <option>1 Guest</option><option selected>2 Guests</option><option>3 Guests</option><option>4+ Guests</option>
+              </select>
+            </div>
+          </div>
+          <div class="book-form-row single">
+            <div>
+              <span class="book-label">Room Type</span>
+              <select id="bpRoomType" onchange="calcTotal()"></select>
+            </div>
+          </div>
+          <div class="room-selected-badge" id="selectedRoomBadge"></div>
+          <div class="booking-total" id="bookingTotal">
+            <table>
+              <tr><td id="totalNightsLabel">1 night</td><td id="totalNightsCost"></td></tr>
+              <tr><td>Taxes & Fees (18% GST)</td><td id="totalTax"></td></tr>
+              <tr class="total-row"><td>Total</td><td id="totalGrand"></td></tr>
+            </table>
+          </div>
+          <button class="book-now-btn" onclick="initiateBooking()">🏨 Book Now</button>
+          <div style="text-align:center;font-size:11px;color:rgba(168,85,247,0.4);margin-top:10px">Free cancellation · Best rate guaranteed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky bottom bar (shows on scroll) -->
+  <div class="sticky-book-bar" id="stickyBar">
+    <div>
+      <div class="sticky-hotel-name" id="stickyName"></div>
+      <div style="font-size:12px;color:var(--muted)" id="stickyCity"></div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-size:11px;color:var(--muted)">from</div>
+      <div class="sticky-price" id="stickyPrice"></div>
+    </div>
+    <button class="sticky-book-btn" onclick="scrollToBooking()">Book Now →</button>
+  </div>
+</div>
+
+<!-- ══ SIGN IN / REGISTER MODAL ══ -->
+<div class="modal-overlay" id="signInModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeSignIn()">✕</button>
+    <div class="modal-title">Welcome to LuxeStay</div>
+    <div class="modal-subtitle">Sign in to unlock exclusive rates & manage bookings</div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchTab('login')">Sign In</button>
+      <button class="modal-tab" onclick="switchTab('register')">Create Account</button>
+    </div>
+
+    <!-- Login Tab -->
+    <div class="tab-pane active" id="loginTab">
+      <button class="google-btn" onclick="signInWithGoogle()">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Continue with Google
+      </button>
+      <div class="divider">or sign in with email</div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="loginEmail" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••">
+      </div>
+      <div class="auth-error" id="loginError">Invalid email or password. Try: demo@luxestay.com / demo123</div>
+      <button class="auth-btn" onclick="doLogin()">Sign In</button>
+      <div style="text-align:center;margin-top:14px;font-size:12px;color:rgba(168,85,247,0.5)">
+        Demo: demo@luxestay.com / demo123
+      </div>
+    </div>
+
+    <!-- Register Tab -->
+    <div class="tab-pane" id="registerTab">
+      <button class="google-btn" onclick="signInWithGoogle()">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+        Sign up with Google
+      </button>
+      <div class="divider">or create with email</div>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="regName" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="regEmail" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="regPassword" placeholder="Min 6 characters">
+      </div>
+      <div class="auth-error" id="regError"></div>
+      <button class="auth-btn" onclick="doRegister()">Create Account</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BOOKING CONFIRMATION MODAL ══ -->
+<div class="modal-overlay" id="confirmModal">
+  <div class="confirm-modal">
+    <div class="confirm-icon">🎉</div>
+    <div class="confirm-title">Booking Confirmed!</div>
+    <div class="confirm-subtitle" id="confirmSubtitle">Your luxury stay has been reserved. We look forward to welcoming you.</div>
+    <div class="booking-ref">
+      <div class="booking-ref-num" id="confirmRef"></div>
+      <div class="booking-ref-label">Booking Reference Number</div>
+    </div>
+    <div class="booking-details-grid" id="confirmDetails"></div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button class="auth-btn" style="width:auto;padding:12px 28px" onclick="closeConfirm()">✓ Done</button>
+      <button style="padding:12px 28px;background:transparent;border:1px solid rgba(168,85,247,0.3);color:#c084fc;border-radius:12px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px" onclick="viewMyBookings()">View My Bookings</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MY BOOKINGS MODAL ══ -->
+<div class="modal-overlay" id="myBookingsModal">
+  <div class="modal-box" style="width:600px;max-width:95vw">
+    <button class="modal-close" onclick="document.getElementById('myBookingsModal').classList.remove('show')">✕</button>
+    <div class="modal-title">My Bookings</div>
+    <div class="modal-subtitle" id="bookingsSubtitle">Your upcoming & past stays</div>
+    <div id="bookingsList" style="margin-top:20px;max-height:400px;overflow-y:auto"></div>
+  </div>
+</div>
+
+<!-- ══ PHOTO LIGHTBOX ══ -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-nav prev" onclick="lightboxNav(-1)">‹</button>
+  <img id="lightboxImg" src="" alt="Hotel photo">
+  <button class="lightbox-nav next" onclick="lightboxNav(1)">›</button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-title" id="toastTitle"></span>
+  <span class="toast-msg" id="toastMsg"></span>
+</div>
+
+<!-- FOOTER -->
+<footer>© 2026 LuxeStay — India's Premier Hotel Booking Platform</footer>
+
+<script>
+// ══════════════════════════════════════
+// DATA
+// ══════════════════════════════════════
+
+// Real hotel images using Unsplash (reliable, no CORS issues)
+// Each hotel gets a unique, contextually relevant high-quality photo
+const IMGS = {
+  // MUMBAI
+  taj_mahal_palace:     "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=900&q=80",
+  w_mumbai:             "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=900&q=80",
+  four_seasons_mumbai:  "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=900&q=80",
+  oberoi_mumbai:        "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=900&q=80",
+  itc_grand_central:    "https://images.unsplash.com/photo-1549294413-26f195200957?w=900&q=80",
+  // DELHI
+  leela_palace_delhi:   "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=900&q=80",
+  taj_mahal_delhi:      "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=900&q=80",
+  itc_maurya:           "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=900&q=80",
+  lodhi_delhi:          "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=900&q=80",
+  grand_new_delhi:      "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=900&q=80",
+  // GOA
+  taj_exotica_goa:      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80",
+  alila_diwa_goa:       "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=900&q=80",
+  w_goa:                "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=80",
+  leela_goa:            "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80",
+  grand_hyatt_goa:      "https://images.unsplash.com/photo-1551016043-ffe02eed5f48?w=900&q=80",
+  // JAIPUR
+  rambagh_palace:       "https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=900&q=80",
+  raj_palace_jaipur:    "https://images.unsplash.com/photo-1624493184474-8a2be1581c3c?w=900&q=80",
+  jai_mahal_palace:     "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=900&q=80",
+  samode_palace:        "https://images.unsplash.com/photo-1609948543911-0e9c8b2f18c4?w=900&q=80",
+  trident_jaipur:       "https://images.unsplash.com/photo-1560347876-aeef00ee58a1?w=900&q=80",
+  // UDAIPUR
+  oberoi_udaivilas:     "https://images.unsplash.com/photo-1602343168117-bb8a12d7c180?w=900&q=80",
+  taj_lake_palace:      "https://images.unsplash.com/photo-1444491741275-3747c53c99b4?w=900&q=80",
+  fateh_prakash:        "https://images.unsplash.com/photo-1614587185736-cc54f9c4be98?w=900&q=80",
+  // KERALA
+  kumarakom_lake:       "https://images.unsplash.com/photo-1624781626869-e60ada7e5e41?w=900&q=80",
+  taj_bekal:            "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=900&q=80",
+  spice_village:        "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&q=80",
+  // HYDERABAD
+  taj_falaknuma:        "https://images.unsplash.com/photo-1566737236500-c8ac43014a67?w=900&q=80",
+  taj_krishna_hyd:      "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=900&q=80",
+  itc_kohenur:          "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?w=900&q=80",
+  // KOLKATA
+  oberoi_grand_kolkata: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=900&q=80",
+  itc_royal_bengal:     "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=900&q=80",
+  // BENGALURU
+  leela_bengaluru:      "https://images.unsplash.com/photo-1561501878-aabd62634533?w=900&q=80",
+  itc_windsor:          "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=900&q=80",
+  // AGRA
+  itc_mughal_agra:      "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=900&q=80",
+  oberoi_amarvilas:     "https://images.unsplash.com/photo-1591825729269-caeb344f6df2?w=900&q=80",
+  // VIZAG
+  novotel_vizag:        "https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?w=900&q=80",
+  park_vizag:           "https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?w=900&q=80",
+  taj_gateway_vizag:    "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=80",
+  green_park_vizag:     "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=900&q=80",
+  fortune_ridge_vizag:  "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=900&q=80",
+  radisson_vizag:       "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=900&q=80",
+  // VIJAYAWADA
+  landmark_vijayawada:  "https://images.unsplash.com/photo-1602343168117-bb8a12d7c180?w=900&q=80",
+  novotel_vijayawada:   "https://images.unsplash.com/photo-1549294413-26f195200957?w=900&q=80",
+  ramada_vijayawada:    "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=900&q=80",
+  fortune_murali:       "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80",
+  ilapuram:             "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=900&q=80",
+  // TIRUPATI
+  fortune_tirupati:     "https://images.unsplash.com/photo-1609948543911-0e9c8b2f18c4?w=900&q=80",
+  marasa_sarovar:       "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=900&q=80",
+  ramada_tirupati:      "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=900&q=80",
+  bliss_tirupati:       "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&q=80",
+  quality_inn_tirupati: "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?w=900&q=80",
+  // GUNTUR
+  fern_guntur:          "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=900&q=80",
+  swarna_palace:        "https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?w=900&q=80",
+  vijaya_grand:         "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=900&q=80",
+  minerva_grand:        "https://images.unsplash.com/photo-1561501878-aabd62634533?w=900&q=80",
+  golkonda_guntur:      "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=900&q=80",
+  // RAJAHMUNDRY
+  godavari_grand:       "https://images.unsplash.com/photo-1624293478461-38a73a0d2ffd?w=900&q=80",
+  royale_residency:     "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=900&q=80",
+  haritha_rajahmundry:  "https://images.unsplash.com/photo-1444491741275-3747c53c99b4?w=900&q=80",
+  marriott_rajahmundry: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=80",
+  lotus_rajahmundry:    "https://images.unsplash.com/photo-1551016043-ffe02eed5f48?w=900&q=80",
+  // NELLORE
+  leela_nellore:        "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=900&q=80",
+  grand_nellore:        "https://images.unsplash.com/photo-1549294413-26f195200957?w=900&q=80",
+  spree_shivai:         "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=900&q=80",
+  regency_nellore:      "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=900&q=80",
+  amaravathi_nellore:   "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&q=80",
+  // KURNOOL
+  srinivasa_grand:      "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=900&q=80",
+  haritha_kurnool:      "https://images.unsplash.com/photo-1602343168117-bb8a12d7c180?w=900&q=80",
+  mourya_kurnool:       "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=900&q=80",
+  oyo_kurnool:          "https://images.unsplash.com/photo-1468824357306-a439d58ccb1c?w=900&q=80",
+  belum_retreat:        "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&q=80",
+  // CHENNAI
+  itc_grand_chola:      "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=900&q=80",
+  leela_chennai:        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80",
+  taj_coromandel:       "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80",
+  westin_chennai:       "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=900&q=80",
+  park_hyatt_chennai:   "https://images.unsplash.com/photo-1561501878-aabd62634533?w=900&q=80",
+  // COIMBATORE
+  vivanta_coimbatore:   "https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?w=900&q=80",
+  le_meridien_coimbatore:"https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=900&q=80",
+  residency_coimbatore: "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=900&q=80",
+  radisson_coimbatore:  "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=80",
+  fortune_coimbatore:   "https://images.unsplash.com/photo-1549294413-26f195200957?w=900&q=80",
+  // MADURAI
+  taj_gateway_madurai:  "https://images.unsplash.com/photo-1609948543911-0e9c8b2f18c4?w=900&q=80",
+  heritage_madurai:     "https://images.unsplash.com/photo-1551016043-ffe02eed5f48?w=900&q=80",
+  fortune_pandiyan:     "https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?w=900&q=80",
+  residency_madurai:    "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=900&q=80",
+  ibis_madurai:         "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=900&q=80",
+  // OOTY
+  taj_savoy_ooty:       "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=900&q=80",
+  fernhills_ooty:       "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=80",
+  sterling_ooty:        "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=900&q=80",
+  savoy_ooty:           "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=900&q=80",
+  club_mahindra_ooty:   "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80",
+  // TRICHY
+  grt_grand_trichy:     "https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?w=900&q=80",
+  sangam_trichy:        "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=900&q=80",
+  femina_trichy:        "https://images.unsplash.com/photo-1609948543911-0e9c8b2f18c4?w=900&q=80",
+  breeze_trichy:        "https://images.unsplash.com/photo-1549294413-26f195200957?w=900&q=80",
+  mayura_trichy:        "https://images.unsplash.com/photo-1602343168117-bb8a12d7c180?w=900&q=80",
+  // THANJAVUR
+  ideal_river_view:     "https://images.unsplash.com/photo-1624293478461-38a73a0d2ffd?w=900&q=80",
+  parisutham_thanjavur: "https://images.unsplash.com/photo-1444491741275-3747c53c99b4?w=900&q=80",
+  grt_regency_thanjavur:"https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=900&q=80",
+  sangam_thanjavur:     "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=900&q=80",
+  chola_sheraton:       "https://images.unsplash.com/photo-1561501878-aabd62634533?w=900&q=80",
+  // KODAIKANAL
+  carlton_kodaikanal:   "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=80",
+  sterling_kodaikanal:  "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=900&q=80",
+  club_mahindra_kodai:  "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=900&q=80",
+  villa_retreat_kodai:  "https://images.unsplash.com/photo-1551016043-ffe02eed5f48?w=900&q=80",
+  jewel_kodaikanal:     "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=80",
+  // SALEM
+  saravana_bhavan_salem:"https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=900&q=80",
+  radha_park_salem:     "https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?w=900&q=80",
+  selvam_salem:         "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=80",
+  grt_salem:            "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=900&q=80",
+  green_park_salem:     "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900&q=80",
+  // VELLORE
+  darling_vellore:      "https://images.unsplash.com/photo-1549294413-26f195200957?w=900&q=80",
+  arcot_grand:          "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=900&q=80",
+  vels_park_vellore:    "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=900&q=80",
+  residency_vellore:    "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=900&q=80",
+  vgn_vellore:          "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=900&q=80",
+  // TIRUNELVELI
+  cozy_2000:            "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=900&q=80",
+  sankari_tirunelveli:  "https://images.unsplash.com/photo-1624293478461-38a73a0d2ffd?w=900&q=80",
+  maharaja_tirunelveli: "https://images.unsplash.com/photo-1551016043-ffe02eed5f48?w=900&q=80",
+  anandha_inn:          "https://images.unsplash.com/photo-1561501878-aabd62634533?w=900&q=80",
+  valliammai:           "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=900&q=80",
+  // RAMESWARAM
+  tamil_nadu_rameswaram:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80",
+  pearl_rameswaram:     "https://images.unsplash.com/photo-1444491741275-3747c53c99b4?w=900&q=80",
+  gateway_rameswaram:   "https://images.unsplash.com/photo-1587974928442-77dc3e0dba72?w=900&q=80",
+  daiwik_rameswaram:    "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=80",
+  la_maison_rameswaram: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=900&q=80",
+  // KANYAKUMARI
+  sparsa_kanyakumari:   "https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=900&q=80",
+  tamil_nadu_kanyakumari:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=80",
+  saravana_kanyakumari: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=900&q=80",
+  seashore_kanyakumari: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&q=80",
+  grt_regency_kanyakumari:"https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=80",
+};
+
+// Gallery images pool (different angles for each hotel detail page)
+const GALLERY_POOL = [
+  "https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=1200&q=85",
+  "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=1200&q=85",
+  "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=85",
+  "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=85",
+  "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1200&q=85",
+  "https://images.unsplash.com/photo-1590073242678-70ee3fc28e8e?w=1200&q=85",
+  "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1200&q=85",
+  "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=85",
+  "https://images.unsplash.com/photo-1551016043-ffe02eed5f48?w=1200&q=85",
+  "https://images.unsplash.com/photo-1560347876-aeef00ee58a1?w=1200&q=85",
+  "https://images.unsplash.com/photo-1549294413-26f195200957?w=1200&q=85",
+  "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1200&q=85",
+];
+
+// Room images
+const ROOM_IMGS = [
+  "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=400&q=80",
+  "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=400&q=80",
+  "https://images.unsplash.com/photo-1582719508461-905c673771fd?w=400&q=80",
+  "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=400&q=80",
+  "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=400&q=80",
+];
+
+const hotels = [
+  {id:1,name:"The Taj Mahal Palace",city:"Mumbai",state:"Maharashtra",stars:5,price:28000,badge:"Iconic",rating:4.9,reviews:2847,desc:"The original palace of India's luxury hospitality, overlooking the Gateway of India on the Arabian Sea since 1903. A UNESCO recognised architectural masterpiece.",amenities:["Sea View","Spa","Fine Dining","Pool","Butler","Concierge","Valet","Heritage Tours"],img:IMGS.taj_mahal_palace,gradient:"linear-gradient(135deg,#0d3a5c,#1a6b9e)"},
+  {id:2,name:"W Mumbai",city:"Mumbai",state:"Maharashtra",stars:5,price:22000,badge:"Ultra-Modern",rating:4.7,reviews:1204,desc:"A statement of contemporary luxury in BKC. The rooftop WET pool deck offers panoramic city skyline views.",amenities:["Rooftop Pool","Skyline View","BLISS Spa","Bar","Gym","Concierge","Valet","24h Room Service"],img:IMGS.w_mumbai,gradient:"linear-gradient(135deg,#0d1a3d,#1a3d6e)"},
+  {id:3,name:"Four Seasons Mumbai",city:"Mumbai",state:"Maharashtra",stars:5,price:25000,badge:"Skyline",rating:4.8,reviews:1876,desc:"34 floors of all-suite luxury in Worli with sweeping Arabian Sea and city skyline panoramas from every room.",amenities:["Infinity Pool","AER Bar","Spa","City Views","All Suites","Fine Dining","Butler","Gym"],img:IMGS.four_seasons_mumbai,gradient:"linear-gradient(135deg,#0a1525,#163d6e)"},
+  {id:4,name:"The Oberoi Mumbai",city:"Mumbai",state:"Maharashtra",stars:5,price:30000,badge:"Sea-Facing",rating:4.8,reviews:2103,desc:"A sleek glass tower on Nariman Point with uninterrupted views of the Arabian Sea and Marine Drive.",amenities:["Sea Views","Fine Dining","Spa","Butler","Private Beach","Pool","Concierge","24h Service"],img:IMGS.oberoi_mumbai,gradient:"linear-gradient(135deg,#0d2a3c,#1a5060)"},
+  {id:5,name:"ITC Grand Central Mumbai",city:"Mumbai",state:"Maharashtra",stars:5,price:16000,badge:"Business",rating:4.6,reviews:1432,desc:"Centrally located in Parel with signature ITC service, award-winning restaurants and a sprawling wellness centre.",amenities:["Wellness","Multi Cuisine","Pool","Business Hub","Spa","Conference","Gym","Valet"],img:IMGS.itc_grand_central,gradient:"linear-gradient(135deg,#1a0d30,#3d1f6e)"},
+  {id:6,name:"The Leela Palace Delhi",city:"Delhi",state:"NCR",stars:5,price:32000,badge:"Palace",rating:4.9,reviews:2234,desc:"Inspired by Lutyens Delhi grandeur, a palatial retreat with rooftop views across the diplomatic enclave.",amenities:["Rooftop","Spa","Butler","Fine Dining","Pool","Gardens","Concierge","Heritage"],img:IMGS.leela_palace_delhi,gradient:"linear-gradient(135deg,#1a1a3e,#3d1f6e)"},
+  {id:7,name:"Taj Mahal Hotel Delhi",city:"Delhi",state:"NCR",stars:5,price:26000,badge:"Heritage",rating:4.8,reviews:1987,desc:"A landmark at Man Singh Road blending Mughal elegance with contemporary luxury. Home to legendary Machan.",amenities:["Heritage","Pool","Spa","Machan Restaurant","Butler","Gardens","Gym","Concierge"],img:IMGS.taj_mahal_delhi,gradient:"linear-gradient(135deg,#1a1000,#4a3000)"},
+  {id:8,name:"ITC Maurya New Delhi",city:"Delhi",state:"NCR",stars:5,price:22000,badge:"Presidential",rating:4.7,reviews:1654,desc:"Where world leaders stay. Home to Bukhara, ranked among the world's 50 best restaurants.",amenities:["Bukhara","Presidential Suite","Spa","Craft","Pool","Butler","Concierge","Business Hub"],img:IMGS.itc_maurya,gradient:"linear-gradient(135deg,#1a0f00,#5c3d00)"},
+  {id:9,name:"The Lodhi New Delhi",city:"Delhi",state:"NCR",stars:5,price:28000,badge:"Garden Oasis",rating:4.9,reviews:1123,desc:"Six acres of gardens and pools in Lodhi Colony. All suites with private plunge pools and outdoor terraces.",amenities:["Private Pool","Garden","Spa","Restaurant","All Suites","Butler","Yoga","Concierge"],img:IMGS.lodhi_delhi,gradient:"linear-gradient(135deg,#0a200a,#1a4a1a)"},
+  {id:10,name:"The Grand New Delhi",city:"Delhi",state:"NCR",stars:5,price:18000,badge:"Central",rating:4.6,reviews:2341,desc:"Delhi's landmark hotel on Barakhamba Road, hosting royalty and heads of state since 1911.",amenities:["Heritage","Multiple Dining","Spa","Business","Pool","Gym","Concierge","24h Service"],img:IMGS.grand_new_delhi,gradient:"linear-gradient(135deg,#1a1a00,#4a4a00)"},
+  {id:11,name:"Taj Exotica Goa",city:"Goa",state:"Goa",stars:5,price:25000,badge:"Beachside",rating:4.8,reviews:2876,desc:"43 acres of lush gardens on Benaulim beach. The largest private beach strip in South Goa.",amenities:["Private Beach","Pool Villas","Spa","Water Sports","Fine Dining","Butler","Gardens","Concierge"],img:IMGS.taj_exotica_goa,gradient:"linear-gradient(135deg,#003d3d,#007a7a)"},
+  {id:12,name:"Alila Diwa Goa",city:"Goa",state:"Goa",stars:5,price:18000,badge:"Tranquil",rating:4.7,reviews:1432,desc:"A tranquil sanctuary amid rice paddies near the beach. Infinity pools and Ayurvedic spa rituals await.",amenities:["Infinity Pool","Beach","Ayurveda","Villas","Spa","Yoga","Organic Dining","Nature Walks"],img:IMGS.alila_diwa_goa,gradient:"linear-gradient(135deg,#0a4a2a,#1a7a50)"},
+  {id:13,name:"W Goa",city:"Goa",state:"Goa",stars:5,price:20000,badge:"Vibrant",rating:4.6,reviews:1876,desc:"Bold, vibrant design on Vagator Beach. Whatever/Whenever service and an iconic beachside bar scene.",amenities:["Beachfront","WET Pool","BLISS Spa","Beach Bar","DJ","Water Sports","Gym","Concierge"],img:IMGS.w_goa,gradient:"linear-gradient(135deg,#1a0a3d,#4a1a7a)"},
+  {id:14,name:"The Leela Goa",city:"Goa",state:"Goa",stars:5,price:22000,badge:"Lagoon",rating:4.8,reviews:2103,desc:"A private lagoon and 75 acres of tropical gardens on Mobor beach — Goa's most luxurious resort address.",amenities:["Private Lagoon","Golf","Spa","Beach","Butler","Multiple Pools","Fine Dining","Watersports"],img:IMGS.leela_goa,gradient:"linear-gradient(135deg,#003d20,#006b40)"},
+  {id:15,name:"Grand Hyatt Goa",city:"Goa",state:"Goa",stars:5,price:15000,badge:"Luxury Resort",rating:4.7,reviews:3241,desc:"Portuguese colonial architecture meets modern luxury on the banks of the Sal River in Bambolim.",amenities:["River View","5 Pools","Spa","Multiple Dining","Gym","Beach Club","Golf","Business Centre"],img:IMGS.grand_hyatt_goa,gradient:"linear-gradient(135deg,#1a1a00,#4a3a00)"},
+  {id:16,name:"Rambagh Palace",city:"Jaipur",state:"Rajasthan",stars:5,price:42000,badge:"Heritage",rating:4.9,reviews:3102,desc:"The former residence of the Maharaja of Jaipur. Rose gardens, polo grounds, and royal suites.",amenities:["Royal Suite","Polo","Gardens","Spa","Heritage Tour","Butler","Pool","Fine Dining"],img:IMGS.rambagh_palace,gradient:"linear-gradient(135deg,#4a1a00,#c05a00)"},
+  {id:17,name:"The Raj Palace",city:"Jaipur",state:"Rajasthan",stars:5,price:38000,badge:"World's Best",rating:4.8,reviews:2107,desc:"A 300-year-old palace transformed into a museum-hotel. Each suite is a piece of living Rajput history.",amenities:["Museum Suites","Jewellery Museum","Spa","Camel Rides","Heritage","Butler","Pool","Fine Dining"],img:IMGS.raj_palace_jaipur,gradient:"linear-gradient(135deg,#2d0a00,#8b2a00)"},
+  {id:18,name:"Jai Mahal Palace",city:"Jaipur",state:"Rajasthan",stars:5,price:18000,badge:"Mughal Gardens",rating:4.7,reviews:1654,desc:"A 250-year-old palace hotel surrounded by 18 acres of Mughal gardens with peacocks roaming the lawns.",amenities:["Mughal Gardens","Pool","Spa","Cultural Shows","Heritage","Butler","Fine Dining","Yoga"],img:IMGS.jai_mahal_palace,gradient:"linear-gradient(135deg,#3d1500,#a04000)"},
+  {id:19,name:"Samode Palace",city:"Jaipur",state:"Rajasthan",stars:5,price:28000,badge:"Frescoes",rating:4.8,reviews:987,desc:"A 475-year-old palace with extraordinary hand-painted frescoes and an extraordinary rooftop terrace.",amenities:["Historic Frescoes","Rooftop","Pool","Heritage","Spa","Cultural Shows","Butler","Gardens"],img:IMGS.samode_palace,gradient:"linear-gradient(135deg,#2a1000,#7a3000)"},
+  {id:20,name:"Trident Jaipur",city:"Jaipur",state:"Rajasthan",stars:5,price:12000,badge:"Lakeside",rating:4.6,reviews:2341,desc:"Set on the banks of Man Sagar Lake with the iconic Jal Mahal Water Palace as its backdrop.",amenities:["Lake View","Jal Mahal View","Pool","Spa","Yoga","Heritage Tours","Fine Dining","Gym"],img:IMGS.trident_jaipur,gradient:"linear-gradient(135deg,#1a0800,#5c2800)"},
+  {id:21,name:"The Oberoi Udaivilas",city:"Udaipur",state:"Rajasthan",stars:5,price:55000,badge:"#1 Rated",rating:5.0,reviews:4218,desc:"A majestic palace resort on the shores of Lake Pichola. Semi-private pools in each suite face the water.",amenities:["Lake View","Private Pool","Spa","Boat Rides","Fine Dining","Butler","Heritage Tours","Yoga"],img:IMGS.oberoi_udaivilas,gradient:"linear-gradient(135deg,#3d1a0d,#8b4513)"},
+  {id:22,name:"Taj Lake Palace",city:"Udaipur",state:"Rajasthan",stars:5,price:48000,badge:"Island Palace",rating:4.9,reviews:3876,desc:"A white marble palace floating on Lake Pichola — accessible only by boat. Pure romance on water.",amenities:["Island Location","Boat Access","Rooftop","Dining","Spa","Heritage","Butler","Lake Views"],img:IMGS.taj_lake_palace,gradient:"linear-gradient(135deg,#1a0a00,#5c3000)"},
+  {id:23,name:"Fateh Prakash Palace",city:"Udaipur",state:"Rajasthan",stars:5,price:22000,badge:"Royal",rating:4.7,reviews:1432,desc:"A royal palace on the City Palace complex with views of Lake Pichola and Jag Mandir.",amenities:["Lake View","Royal Heritage","Crystal Gallery","Spa","Dining","Cultural Shows","Gardens","Pool"],img:IMGS.fateh_prakash,gradient:"linear-gradient(135deg,#2a0800,#7a2800)"},
+  {id:24,name:"Kumarakom Lake Resort",city:"Kumarakom",state:"Kerala",stars:5,price:22000,badge:"Backwaters",rating:4.8,reviews:1987,desc:"Heritage villas on the banks of Vembanad Lake. Houseboat excursions, Ayurvedic treatments and serene sunsets.",amenities:["Houseboat","Ayurveda","Lake View","Villas","Yoga","Organic Dining","Spa","Nature Walks"],img:IMGS.kumarakom_lake,gradient:"linear-gradient(135deg,#0a3d1a,#1a6b2e)"},
+  {id:25,name:"Taj Bekal Resort & Spa",city:"Bekal",state:"Kerala",stars:5,price:18000,badge:"Riverfront",rating:4.7,reviews:1234,desc:"A stunning resort where a freshwater river meets the Arabian Sea in north Kerala's unexplored coastline.",amenities:["River Meets Sea","Infinity Pool","Ayurveda","Kayak","Spa","Yoga","Heritage","Water Sports"],img:IMGS.taj_bekal,gradient:"linear-gradient(135deg,#003d1a,#007a40)"},
+  {id:26,name:"Spice Village CGH Earth",city:"Thekkady",state:"Kerala",stars:4,price:9500,badge:"Eco-Luxury",rating:4.7,reviews:1876,desc:"Gateway to Periyar Wildlife Sanctuary. Jungle safaris, bamboo rafting and elephant encounters.",amenities:["Jungle Safari","Elephant Tours","Organic Food","Spa","Nature Walks","Bamboo Rafting","Yoga","Birdwatching"],img:IMGS.spice_village,gradient:"linear-gradient(135deg,#0a2a0a,#1a5c1a)"},
+  {id:27,name:"Taj Falaknuma Palace",city:"Hyderabad",state:"Telangana",stars:5,price:50000,badge:"Nizam's Palace",rating:4.9,reviews:2987,desc:"Perched atop a hill, the erstwhile palace of the Nizam restored to its former glory. World-famous Jade collection.",amenities:["Palace View","Horse Carriage","Spa","Jade Collection","Butler","Fine Dining","Pool","Heritage"],img:IMGS.taj_falaknuma,gradient:"linear-gradient(135deg,#1a0f00,#4a3000)"},
+  {id:28,name:"Taj Krishna Hyderabad",city:"Hyderabad",state:"Telangana",stars:5,price:16000,badge:"Hussain Sagar",rating:4.7,reviews:2103,desc:"Set amid fountains and landscaped gardens overlooking Hussain Sagar Lake in Banjara Hills.",amenities:["Lake View","3 Restaurants","Pool","Spa","Gym","Business Hub","Butler","Concierge"],img:IMGS.taj_krishna_hyd,gradient:"linear-gradient(135deg,#1a0a00,#4a2800)"},
+  {id:29,name:"ITC Kohenur Hyderabad",city:"Hyderabad",state:"Telangana",stars:5,price:20000,badge:"HITEC City",rating:4.8,reviews:1654,desc:"A gleaming tower in HITEC City — ITC's most modern property with spectacular views of the financial district.",amenities:["City Views","Kaya Kalp Spa","Pool","Fine Dining","Business Hub","Gym","Butler","Concierge"],img:IMGS.itc_kohenur,gradient:"linear-gradient(135deg,#0a1a30,#1a3d70)"},
+  {id:30,name:"The Oberoi Grand Kolkata",city:"Kolkata",state:"West Bengal",stars:5,price:12000,badge:"Colonial",rating:4.8,reviews:3241,desc:"A Victorian landmark on Jawaharlal Nehru Road. The grande dame of Kolkata's luxury hotels since 1841.",amenities:["Heritage","Pool","Fine Dining","Spa","Gardens","Butler","Gym","Concierge"],img:IMGS.oberoi_grand_kolkata,gradient:"linear-gradient(135deg,#1a0f2e,#3d1a5c)"},
+  {id:31,name:"ITC Royal Bengal",city:"Kolkata",state:"West Bengal",stars:5,price:14000,badge:"ITC Luxury",rating:4.7,reviews:1876,desc:"The tallest hotel in India at 52 floors — sweeping city panoramas and ITC's legendary hospitality.",amenities:["Tallest Hotel","City Panoramas","Peshawri","Spa","Pool","Gym","Business Hub","Butler"],img:IMGS.itc_royal_bengal,gradient:"linear-gradient(135deg,#1a0820,#4a1a5c)"},
+  {id:32,name:"The Leela Palace Bengaluru",city:"Bengaluru",state:"Karnataka",stars:5,price:20000,badge:"City Luxury",rating:4.8,reviews:2345,desc:"A fusion of royal Mysore architecture and contemporary luxury in the heart of Bengaluru's business district.",amenities:["Rooftop Pool","Spa","Conference","Fine Dining","Butler","Gym","Gardens","Concierge"],img:IMGS.leela_bengaluru,gradient:"linear-gradient(135deg,#0a1a3d,#1a3a7a)"},
+  {id:33,name:"ITC Windsor Bengaluru",city:"Bengaluru",state:"Karnataka",stars:5,price:15000,badge:"Heritage",rating:4.7,reviews:1543,desc:"A club-like sanctuary in the heart of Bengaluru — British-era elegance with impeccable service.",amenities:["Heritage","Gardens","Pool","Restaurant","Spa","Butler","Business Hub","Gym"],img:IMGS.itc_windsor,gradient:"linear-gradient(135deg,#0a0a2a,#1a1a5c)"},
+  {id:34,name:"ITC Mughal Agra",city:"Agra",state:"Uttar Pradesh",stars:5,price:16000,badge:"Taj View",rating:4.7,reviews:2987,desc:"A short walk from the Taj Mahal, this Mughal-inspired resort features the finest Kesar Da Dhaba dining.",amenities:["Taj View","Kesar Dining","Spa","Heritage Gardens","Pool","Butler","Concierge","Heritage Tours"],img:IMGS.itc_mughal_agra,gradient:"linear-gradient(135deg,#1a0a00,#5c2a00)"},
+  {id:35,name:"The Oberoi Amarvilas Agra",city:"Agra",state:"Uttar Pradesh",stars:5,price:55000,badge:"Taj Views",rating:5.0,reviews:4102,desc:"Every room, suite and restaurant has unobstructed views of the Taj Mahal — the world's finest vantage point.",amenities:["Taj View Every Room","Pool","Spa","Fine Dining","Butler","Heritage Tours","Yoga","Concierge"],img:IMGS.oberoi_amarvilas,gradient:"linear-gradient(135deg,#1a0800,#4a2000)"},
+  {id:36,name:"Novotel Varun Beach Vizag",city:"Visakhapatnam",state:"Andhra Pradesh",stars:5,price:8500,badge:"Beachfront",rating:4.6,reviews:1765,desc:"Directly on Varun Beach Road overlooking the Bay of Bengal. Watch the sunrise over the ocean from your balcony.",amenities:["Sea View","Beach Access","Pool","Spa","Fine Dining","Gym","Conference","Butler"],img:IMGS.novotel_vizag,gradient:"linear-gradient(135deg,#003d5c,#006b9e)"},
+  {id:37,name:"The Park Visakhapatnam",city:"Visakhapatnam",state:"Andhra Pradesh",stars:5,price:7500,badge:"Sea Facing",rating:4.5,reviews:1432,desc:"A contemporary seafront hotel on Beach Road, known for Aqua — the city's most celebrated rooftop restaurant.",amenities:["Sea View","Aqua Rooftop","Pool","Spa","Fine Dining","Bar","Gym","Conference"],img:IMGS.park_vizag,gradient:"linear-gradient(135deg,#0a2a40,#1a5070)"},
+  {id:38,name:"Taj Gateway Vizag",city:"Visakhapatnam",state:"Andhra Pradesh",stars:4,price:6000,badge:"Taj Brand",rating:4.5,reviews:1234,desc:"Part of the Taj group, centrally located in the city with excellent conference facilities and coastal cuisine.",amenities:["Business Centre","Pool","Coastal Cuisine","Spa","Conference","Gym","Concierge","Bar"],img:IMGS.taj_gateway_vizag,gradient:"linear-gradient(135deg,#1a0a00,#4a2800)"},
+  {id:39,name:"Green Park Visakhapatnam",city:"Visakhapatnam",state:"Andhra Pradesh",stars:4,price:5500,badge:"City Centre",rating:4.4,reviews:987,desc:"A well-established luxury hotel in the heart of Vizag, popular with business travellers for decades.",amenities:["Business Hub","Pool","Multiple Restaurants","Bar","Conference","Gym","Spa","Valet"],img:IMGS.green_park_vizag,gradient:"linear-gradient(135deg,#0a3d20,#1a7a40)"},
+  {id:40,name:"Fortune Grand Ridge Vizag",city:"Visakhapatnam",state:"Andhra Pradesh",stars:4,price:5000,badge:"Hill View",rating:4.4,reviews:876,desc:"Perched on the Eastern Ghats hillside with sweeping views of the Bay of Bengal and the port city below.",amenities:["Hill View","Pool","Spa","Coastal Dining","Conference","Gym","Bar","Valet"],img:IMGS.fortune_ridge_vizag,gradient:"linear-gradient(135deg,#1a2a1a,#3d5c3d)"},
+  {id:41,name:"Radisson Blu Vizag",city:"Visakhapatnam",state:"Andhra Pradesh",stars:5,price:9000,badge:"Premium",rating:4.7,reviews:2103,desc:"A modern luxury hotel near the IT corridors of Vizag with spectacular sea vistas and contemporary design.",amenities:["Sea View","Infinity Pool","Spa","Fine Dining","Business Hub","Gym","Conference","Butler"],img:IMGS.radisson_vizag,gradient:"linear-gradient(135deg,#00203d,#004080)"},
+  {id:42,name:"The Landmark Vijayawada",city:"Vijayawada",state:"Andhra Pradesh",stars:5,price:7000,badge:"Landmark",rating:4.6,reviews:1654,desc:"The city's most iconic luxury hotel on MG Road, offering panoramic views of the Krishna River.",amenities:["River View","Pool","Spa","Multiple Dining","Conference","Gym","Bar","Concierge"],img:IMGS.landmark_vijayawada,gradient:"linear-gradient(135deg,#0a1a30,#1a3d6e)"},
+  {id:43,name:"Novotel Vijayawada",city:"Vijayawada",state:"Andhra Pradesh",stars:5,price:8000,badge:"Modern Luxury",rating:4.6,reviews:1432,desc:"A sleek, contemporary hotel by the Krishna River, ideal for business and leisure with world-class facilities.",amenities:["River View","Pool","Business Centre","Spa","Gym","Conference","Fine Dining","Bar"],img:IMGS.novotel_vijayawada,gradient:"linear-gradient(135deg,#002030,#005060)"},
+  {id:44,name:"Ramada Vijayawada",city:"Vijayawada",state:"Andhra Pradesh",stars:4,price:5500,badge:"International",rating:4.4,reviews:1123,desc:"Part of the global Wyndham group, offering reliable luxury with spectacular views of the Prakasam Barrage.",amenities:["Barrage View","Pool","Spa","Andhra Cuisine","Conference","Gym","Bar","Valet"],img:IMGS.ramada_vijayawada,gradient:"linear-gradient(135deg,#1a0020,#4a006e)"},
+  {id:45,name:"Fortune Murali Park",city:"Vijayawada",state:"Andhra Pradesh",stars:4,price:5000,badge:"Heritage",rating:4.3,reviews:876,desc:"A trusted luxury address in the heart of Vijayawada, known for warm Andhra hospitality and cuisine.",amenities:["City Centre","Pool","Andhra Cuisine","Business","Conference","Gym","Spa","Bar"],img:IMGS.fortune_murali,gradient:"linear-gradient(135deg,#2a0a00,#6a2a00)"},
+  {id:46,name:"Ilapuram Hotel",city:"Vijayawada",state:"Andhra Pradesh",stars:4,price:4500,badge:"Riverside",rating:4.3,reviews:765,desc:"A premium boutique hotel with stunning views of the Krishna River and access to Kondapalli Fort excursions.",amenities:["Krishna View","Boutique","Kondapalli Tours","Rooftop","Pool","Restaurant","Bar","Conference"],img:IMGS.ilapuram,gradient:"linear-gradient(135deg,#0a2000,#1a5000)"},
+  {id:47,name:"Fortune Grand Ridge Tirupati",city:"Tirupati",state:"Andhra Pradesh",stars:4,price:6000,badge:"Pilgrim Luxury",rating:4.5,reviews:2341,desc:"The finest hotel in Tirupati, luxurious rooms near the sacred Tirumala Hills with impeccable service.",amenities:["Hill View","Pool","Temple Tours","Spa","Conference","Gym","Vegetarian Dining","Shuttle"],img:IMGS.fortune_tirupati,gradient:"linear-gradient(135deg,#1a0a00,#5c3000)"},
+  {id:48,name:"Marasa Sarovar Premiere",city:"Tirupati",state:"Andhra Pradesh",stars:5,price:7500,badge:"Top Rated",rating:4.6,reviews:1765,desc:"Tirupati's premier luxury hotel with gracious hospitality and ideal proximity to the Tirumala temple complex.",amenities:["Temple Proximity","Pool","Spa","Veg Dining","Conference","Shuttle Service","Gym","Concierge"],img:IMGS.marasa_sarovar,gradient:"linear-gradient(135deg,#2a1500,#7a4000)"},
+  {id:49,name:"Ramada Tirupati",city:"Tirupati",state:"Andhra Pradesh",stars:4,price:5000,badge:"Wyndham",rating:4.3,reviews:987,desc:"A global brand bringing international standards to the holy city. Temple package excursions available.",amenities:["Temple Packages","Pool","Business Hub","Dining","Conference","Gym","Shuttle","Bar"],img:IMGS.ramada_tirupati,gradient:"linear-gradient(135deg,#1a0000,#4a0000)"},
+  {id:50,name:"Bliss Hotel & Spa Tirupati",city:"Tirupati",state:"Andhra Pradesh",stars:4,price:4500,badge:"Spa Retreat",rating:4.4,reviews:876,desc:"A serene wellness-focused hotel near the railway station, combining spiritual rejuvenation with modern luxury.",amenities:["Spa","Yoga","Ayurvedic Treatments","Sattvic Dining","Pool","Meditation","Conference","Gym"],img:IMGS.bliss_tirupati,gradient:"linear-gradient(135deg,#001a2a,#003d5c)"},
+  {id:51,name:"Quality Inn Tirupati",city:"Tirupati",state:"Andhra Pradesh",stars:4,price:4000,badge:"Pilgrimage",rating:4.2,reviews:1234,desc:"Centrally located, a favourite of pilgrims seeking comfort near the holy shrine.",amenities:["Prasadam Dining","A/C","24h Service","Shuttle","Pool","Conference","Gym","Valet"],img:IMGS.quality_inn_tirupati,gradient:"linear-gradient(135deg,#1a1000,#4a3000)"},
+  {id:52,name:"The Fern Residency Guntur",city:"Guntur",state:"Andhra Pradesh",stars:4,price:4000,badge:"Eco-Friendly",rating:4.3,reviews:765,desc:"A premium eco-friendly hotel in the AP capital region, close to the Amaravati Buddhist heritage sites.",amenities:["Eco-Friendly","Pool","Amaravati Tours","Dining","Conference","Gym","Spa","Bar"],img:IMGS.fern_guntur,gradient:"linear-gradient(135deg,#001a10,#004030)"},
+  {id:53,name:"Hotel Swarna Palace",city:"Guntur",state:"Andhra Pradesh",stars:4,price:3500,badge:"City Favourite",rating:4.2,reviews:987,desc:"Guntur's finest hotel — known for authentic Andhra cuisine and warm welcome in the Chilli capital.",amenities:["Andhra Cuisine","Rooftop","Business Hub","Heritage","Pool","Bar","Conference","Gym"],img:IMGS.swarna_palace,gradient:"linear-gradient(135deg,#2a1000,#7a3000)"},
+  {id:54,name:"Vijaya Grand Guntur",city:"Guntur",state:"Andhra Pradesh",stars:4,price:3800,badge:"Business",rating:4.2,reviews:876,desc:"A reliable luxury address with meeting rooms, a rooftop pool and a celebrated multi-cuisine restaurant.",amenities:["Rooftop Pool","Conference","Multi Cuisine","Bar","Gym","Spa","Valet","Wi-Fi"],img:IMGS.vijaya_grand,gradient:"linear-gradient(135deg,#1a1a00,#4a4000)"},
+  {id:55,name:"Minerva Grand Guntur",city:"Guntur",state:"Andhra Pradesh",stars:4,price:3200,badge:"Heritage",rating:4.1,reviews:765,desc:"A well-loved hospitality brand with decades of service in Guntur, offering spacious rooms and local cuisine.",amenities:["Heritage Brand","Andhra Food","Banquet","Parking","Pool","Conference","Bar","Wi-Fi"],img:IMGS.minerva_grand,gradient:"linear-gradient(135deg,#200a00,#5a2000)"},
+  {id:56,name:"Golkonda Residency Guntur",city:"Guntur",state:"Andhra Pradesh",stars:3,price:2800,badge:"Budget Luxury",rating:4.0,reviews:654,desc:"Great value hotel in the commercial hub — popular for corporate stays and Andhra cuisine.",amenities:["City Centre","Andhra Cuisine","A/C","Wi-Fi","Conference","Parking","Bar","24h Service"],img:IMGS.golkonda_guntur,gradient:"linear-gradient(135deg,#002010,#006030)"},
+  {id:57,name:"Godavari Grand",city:"Rajahmundry",state:"Andhra Pradesh",stars:4,price:4500,badge:"River View",rating:4.4,reviews:1234,desc:"Overlooking the magnificent Godavari River with panoramic views of India's longest bridge.",amenities:["Godavari View","Pool","River Dining","Spa","Conference","Gym","Bar","Heritage Tours"],img:IMGS.godavari_grand,gradient:"linear-gradient(135deg,#003040,#006080)"},
+  {id:58,name:"The Royale Residency",city:"Rajahmundry",state:"Andhra Pradesh",stars:4,price:4000,badge:"Cultural Hub",rating:4.3,reviews:876,desc:"Located in the cultural capital of Andhra Pradesh, close to the famous Kotilingala temples and Kadali gardens.",amenities:["Cultural Tours","Pool","Multi Cuisine","Banquet","Conference","Gym","Spa","Bar"],img:IMGS.royale_residency,gradient:"linear-gradient(135deg,#1a0a00,#5a2800)"},
+  {id:59,name:"Haritha Hotel Rajahmundry",city:"Rajahmundry",state:"Andhra Pradesh",stars:3,price:3200,badge:"APTDC",rating:4.1,reviews:987,desc:"Run by Andhra Pradesh Tourism, the Haritha chain offers well-located and reliable stays near the Godavari ghats.",amenities:["Godavari Ghats","River Access","Local Cuisine","Tours","Pool","Conference","Bar","Parking"],img:IMGS.haritha_rajahmundry,gradient:"linear-gradient(135deg,#002030,#005060)"},
+  {id:60,name:"Rajahmundry Marriott",city:"Rajahmundry",state:"Andhra Pradesh",stars:5,price:7000,badge:"Premium",rating:4.7,reviews:1543,desc:"The first internationally branded luxury hotel in Rajahmundry, bringing world-class comfort to East Godavari.",amenities:["Luxury Brand","Pool","Spa","River View","Fine Dining","Butler","Conference","Gym"],img:IMGS.marriott_rajahmundry,gradient:"linear-gradient(135deg,#0a0a30,#1a1a60)"},
+  {id:61,name:"Lotus Hotels Rajahmundry",city:"Rajahmundry",state:"Andhra Pradesh",stars:4,price:3500,badge:"Heritage",rating:4.2,reviews:765,desc:"A cosy heritage hotel in the heart of Rajahmundry, minutes from the Pushkar Ghat.",amenities:["Heritage","Ghat Access","Andhra Cuisine","Parking","Pool","Conference","Bar","Wi-Fi"],img:IMGS.lotus_rajahmundry,gradient:"linear-gradient(135deg,#1a0800,#5c2800)"},
+  {id:62,name:"Leela The Nellore",city:"Nellore",state:"Andhra Pradesh",stars:5,price:6500,badge:"Premium",rating:4.6,reviews:1234,desc:"The finest luxury address in Nellore, known for Nellore fish curry and proximity to Pulicat Lake bird sanctuary.",amenities:["Pulicat Tours","Pool","Nellore Cuisine","Spa","Conference","Gym","Bar","Concierge"],img:IMGS.leela_nellore,gradient:"linear-gradient(135deg,#002040,#005080)"},
+  {id:63,name:"The Grand Nellore",city:"Nellore",state:"Andhra Pradesh",stars:4,price:4200,badge:"Business",rating:4.3,reviews:987,desc:"A modern business hotel in the commercial centre with a rooftop restaurant.",amenities:["Conference","Rooftop","Pool","Business Hub","Gym","Spa","Bar","Valet"],img:IMGS.grand_nellore,gradient:"linear-gradient(135deg,#1a1a00,#5a5000)"},
+  {id:64,name:"Spree Shivai Hotel Nellore",city:"Nellore",state:"Andhra Pradesh",stars:4,price:3500,badge:"City Centre",rating:4.2,reviews:876,desc:"Well-located in the heart of Nellore with easy access to the railway station and local temples.",amenities:["City Centre","Multi Cuisine","A/C","Conference","Pool","Bar","Gym","Wi-Fi"],img:IMGS.spree_shivai,gradient:"linear-gradient(135deg,#002800,#007000)"},
+  {id:65,name:"Hotel Regency Nellore",city:"Nellore",state:"Andhra Pradesh",stars:3,price:3000,badge:"Value Luxury",rating:4.0,reviews:765,desc:"A trusted local favourite with excellent Andhra meals and a loyal business clientele.",amenities:["Andhra Meals","Parking","Business Hub","A/C","Conference","Bar","Wi-Fi","24h Service"],img:IMGS.regency_nellore,gradient:"linear-gradient(135deg,#200000,#600000)"},
+  {id:66,name:"Amaravathi Resorts Nellore",city:"Nellore",state:"Andhra Pradesh",stars:4,price:4000,badge:"Nature",rating:4.3,reviews:654,desc:"Eco-resort near the Nellore wetlands, offering birdwatching, nature trails and fresh Andhra seafood.",amenities:["Birdwatching","Wetlands","Seafood","Nature Trails","Pool","Spa","Yoga","Eco Design"],img:IMGS.amaravathi_nellore,gradient:"linear-gradient(135deg,#002010,#006040)"},
+  {id:67,name:"Hotel Srinivasa Grand",city:"Kurnool",state:"Andhra Pradesh",stars:4,price:4000,badge:"Gateway to Nallamala",rating:4.3,reviews:876,desc:"Near the Nallamala forests and Srisailam dam, ideal base for Srisailam Temple and Belum Caves visits.",amenities:["Nallamala Tours","Pool","Andhra Cuisine","Parking","Conference","Gym","Spa","Bar"],img:IMGS.srinivasa_grand,gradient:"linear-gradient(135deg,#1a0800,#5a2800)"},
+  {id:68,name:"Haritha Kurnool",city:"Kurnool",state:"Andhra Pradesh",stars:3,price:3200,badge:"APTDC",rating:4.1,reviews:654,desc:"Andhra Pradesh Tourism's flagship property in Kurnool — well-located near the Tungabhadra River.",amenities:["River View","APTDC","Local Cuisine","Tours","Pool","Conference","Bar","Parking"],img:IMGS.haritha_kurnool,gradient:"linear-gradient(135deg,#200c00,#603000)"},
+  {id:69,name:"Hotel Mourya Kurnool",city:"Kurnool",state:"Andhra Pradesh",stars:4,price:3500,badge:"Business",rating:4.2,reviews:765,desc:"A leading business hotel in Kurnool with a multi-cuisine restaurant and spacious conference hall.",amenities:["Conference","Multi Cuisine","Banquet","A/C","Pool","Gym","Bar","Wi-Fi"],img:IMGS.mourya_kurnool,gradient:"linear-gradient(135deg,#001a20,#004060)"},
+  {id:70,name:"OYO Townhouse Kurnool",city:"Kurnool",state:"Andhra Pradesh",stars:3,price:2500,badge:"Smart Stay",rating:4.0,reviews:1234,desc:"A modern smart hotel with well-designed rooms, fast Wi-Fi and proximity to the historic Kurnool Fort.",amenities:["Smart TV","Fast Wi-Fi","Kurnool Fort","A/C","Conference","Bar","Gym","Parking"],img:IMGS.oyo_kurnool,gradient:"linear-gradient(135deg,#0a0a20,#2a2060)"},
+  {id:71,name:"The Belum Retreat",city:"Kurnool",state:"Andhra Pradesh",stars:4,price:4500,badge:"Unique",rating:4.4,reviews:543,desc:"A boutique retreat near Belum Caves — Asia's second-largest cave system — with nature-centric design.",amenities:["Belum Caves Tours","Eco Design","Nature Walks","Dining","Pool","Spa","Yoga","Bar"],img:IMGS.belum_retreat,gradient:"linear-gradient(135deg,#0a1a00,#204000)"},
+  {id:72,name:"ITC Grand Chola",city:"Chennai",state:"Tamil Nadu",stars:5,price:15000,badge:"Grand",rating:4.8,reviews:3241,desc:"Inspired by the great Chola temples — this iconic hotel blends heritage architecture with world-class luxury.",amenities:["Heritage Design","Spa","Multiple Restaurants","Pool","Butler","Gym","Concierge","Business Hub"],img:IMGS.itc_grand_chola,gradient:"linear-gradient(135deg,#3d1a00,#7a3a00)"},
+  {id:73,name:"The Leela Palace Chennai",city:"Chennai",state:"Tamil Nadu",stars:5,price:18000,badge:"Beachfront",rating:4.8,reviews:2103,desc:"An opulent beachfront palace on the Bay of Bengal with classical South Indian architecture.",amenities:["Beach","Pool","Spa","Multiple Dining","Butler","Gym","Concierge","Heritage"],img:IMGS.leela_chennai,gradient:"linear-gradient(135deg,#1a0a00,#4a2800)"},
+  {id:74,name:"Taj Coromandel",city:"Chennai",state:"Tamil Nadu",stars:5,price:14000,badge:"Heritage Icon",rating:4.7,reviews:2876,desc:"Chennai's grand dame of hospitality on Nungambakkam High Road — an icon since 1974.",amenities:["Heritage","Pool","Spa","Southern Spice","Butler","Gym","Bar","Concierge"],img:IMGS.taj_coromandel,gradient:"linear-gradient(135deg,#2a0800,#6a2800)"},
+  {id:75,name:"The Westin Chennai",city:"Chennai",state:"Tamil Nadu",stars:5,price:12000,badge:"Bay Views",rating:4.6,reviews:1987,desc:"A gleaming 28-storey tower on the IT Expressway with panoramic views of the Bay of Bengal.",amenities:["Bay Views","Heavenly Spa","Pool","Multiple Dining","Gym","Business Hub","Bar","Concierge"],img:IMGS.westin_chennai,gradient:"linear-gradient(135deg,#001a40,#004080)"},
+  {id:76,name:"Park Hyatt Chennai",city:"Chennai",state:"Tamil Nadu",stars:5,price:16000,badge:"Arts District",rating:4.7,reviews:1654,desc:"Located in the heart of the arts and culture district, a canvas of South Indian artistry.",amenities:["Art Collection","Pool","Spa","Dining","Butler","Gym","Bar","Concierge"],img:IMGS.park_hyatt_chennai,gradient:"linear-gradient(135deg,#1a001a,#4a004a)"},
+  {id:77,name:"Vivanta Coimbatore",city:"Coimbatore",state:"Tamil Nadu",stars:5,price:8000,badge:"Taj Brand",rating:4.6,reviews:1765,desc:"Taj's contemporary brand in the Manchester of India. Close to the Nilgiri foothills with a stunning rooftop pool.",amenities:["Rooftop Pool","Nilgiri Views","Spa","Fine Dining","Butler","Gym","Bar","Concierge"],img:IMGS.vivanta_coimbatore,gradient:"linear-gradient(135deg,#001a10,#005030)"},
+  {id:78,name:"Le Meridien Coimbatore",city:"Coimbatore",state:"Tamil Nadu",stars:5,price:7500,badge:"Convention",rating:4.6,reviews:2341,desc:"The city's largest luxury convention hotel with multiple pools, restaurants and a world-class business centre.",amenities:["Convention Centre","3 Pools","Spa","Multiple Dining","Gym","Butler","Bar","Concierge"],img:IMGS.le_meridien_coimbatore,gradient:"linear-gradient(135deg,#0a001a,#2a0050)"},
+  {id:79,name:"The Residency Coimbatore",city:"Coimbatore",state:"Tamil Nadu",stars:4,price:5500,badge:"City Classic",rating:4.4,reviews:1543,desc:"A beloved Coimbatore institution with over 30 years of hospitality — known for its warmth and Tamil cuisine.",amenities:["Tamil Cuisine","Pool","Business Hub","Spa","Conference","Gym","Bar","Valet"],img:IMGS.residency_coimbatore,gradient:"linear-gradient(135deg,#1a1a00,#4a4a00)"},
+  {id:80,name:"Radisson Coimbatore",city:"Coimbatore",state:"Tamil Nadu",stars:5,price:7000,badge:"Premium",rating:4.6,reviews:1876,desc:"A modern luxury high-rise close to Coimbatore Airport, ideal for business and leisure travellers.",amenities:["Airport Access","Pool","Spa","Fine Dining","Business Hub","Gym","Bar","Butler"],img:IMGS.radisson_coimbatore,gradient:"linear-gradient(135deg,#001040,#002080)"},
+  {id:81,name:"Fortune Coimbatore",city:"Coimbatore",state:"Tamil Nadu",stars:4,price:5000,badge:"ITC Fortune",rating:4.4,reviews:1234,desc:"Part of ITC's Fortune chain, offering reliable four-star luxury with good connectivity to the textile market.",amenities:["Business Hub","Pool","Multi Cuisine","Conference","Gym","Spa","Bar","Valet"],img:IMGS.fortune_coimbatore,gradient:"linear-gradient(135deg,#001a20,#005060)"},
+  {id:82,name:"Taj Gateway Madurai",city:"Madurai",state:"Tamil Nadu",stars:5,price:9000,badge:"Temple City",rating:4.7,reviews:2987,desc:"Adjacent to the magnificent Meenakshi Amman Temple — admire the gopurams from your room.",amenities:["Temple View","Pool","Spa","Temple Tours","Butler","Fine Dining","Gym","Concierge"],img:IMGS.taj_gateway_madurai,gradient:"linear-gradient(135deg,#3d1a00,#7a3000)"},
+  {id:83,name:"Heritage Madurai",city:"Madurai",state:"Tamil Nadu",stars:5,price:12000,badge:"Colonial Estate",rating:4.8,reviews:1432,desc:"A restored 1930s colonial bungalow set in 14 acres with a pristine pool and antique-furnished suites.",amenities:["Colonial Bungalow","Antiques","Pool","Gardens","Spa","Heritage Tours","Butler","Fine Dining"],img:IMGS.heritage_madurai,gradient:"linear-gradient(135deg,#1a0800,#5a2800)"},
+  {id:84,name:"Fortune Pandiyan Madurai",city:"Madurai",state:"Tamil Nadu",stars:4,price:5500,badge:"Heritage Brand",rating:4.5,reviews:1765,desc:"A classic address in Madurai's hospitality scene, known for its Chettinad cuisine and proximity to the temple.",amenities:["Chettinad Cuisine","Pool","Temple Proximity","Spa","Conference","Gym","Bar","Valet"],img:IMGS.fortune_pandiyan,gradient:"linear-gradient(135deg,#1a1000,#4a3000)"},
+  {id:85,name:"The Residency Madurai",city:"Madurai",state:"Tamil Nadu",stars:4,price:5000,badge:"City View",rating:4.4,reviews:1234,desc:"Overlooking the city skyline with the Meenakshi Temple towers visible from the rooftop lounge.",amenities:["City View","Rooftop Lounge","Pool","Dining","Conference","Gym","Bar","Valet"],img:IMGS.residency_madurai,gradient:"linear-gradient(135deg,#001a30,#004060)"},
+  {id:86,name:"ibis Madurai",city:"Madurai",state:"Tamil Nadu",stars:3,price:3200,badge:"Smart Budget",rating:4.2,reviews:2103,desc:"Modern, clean and well-designed with the famous ibis kitchen and easy access to Madurai's temple circuit.",amenities:["ibis Kitchen","A/C","Temple Access","Wi-Fi","Gym","Bar","Conference","24h Service"],img:IMGS.ibis_madurai,gradient:"linear-gradient(135deg,#1a1a00,#4a4000)"},
+  {id:87,name:"Taj Savoy Hotel Ooty",city:"Ooty",state:"Tamil Nadu",stars:5,price:14000,badge:"Heritage 1829",rating:4.8,reviews:1987,desc:"A 1829 colonial property in the original summer capital of the Raj. Log fires, manicured gardens and misty mornings.",amenities:["Heritage","Log Fires","Gardens","Nilgiri Views","Spa","Fine Dining","Butler","Trekking"],img:IMGS.taj_savoy_ooty,gradient:"linear-gradient(135deg,#001a00,#004000)"},
+  {id:88,name:"Fernhills Palace Ooty",city:"Ooty",state:"Tamil Nadu",stars:5,price:18000,badge:"Royal Palace",rating:4.7,reviews:1234,desc:"The former summer palace of the Mysore Maharaja, set on 35 acres of Nilgiri hills with stunning valley views.",amenities:["Palace Heritage","Valley Views","Trekking","Dining","Spa","Gardens","Butler","Heritage Tours"],img:IMGS.fernhills_ooty,gradient:"linear-gradient(135deg,#0a1a00,#285000)"},
+  {id:89,name:"Sterling Ooty Fern Hill",city:"Ooty",state:"Tamil Nadu",stars:4,price:8000,badge:"Nilgiri Escape",rating:4.5,reviews:1543,desc:"Perched at 2300m in the Nilgiris, this resort offers tea-estate views, nature walks and cosy fireside evenings.",amenities:["Tea Estate Views","Nature Walks","Fireplace","Pool","Spa","Trekking","Dining","Family Activities"],img:IMGS.sterling_ooty,gradient:"linear-gradient(135deg,#0a2000,#1a6000)"},
+  {id:90,name:"Savoy Hotel Ooty",city:"Ooty",state:"Tamil Nadu",stars:4,price:9500,badge:"Colonial",rating:4.6,reviews:1765,desc:"A beautifully preserved colonial-era hotel in the heart of Ooty, just steps from the botanical gardens.",amenities:["Colonial Architecture","Botanical Gardens","Dining","Fireplace","Spa","Heritage","Pool","Gardens"],img:IMGS.savoy_ooty,gradient:"linear-gradient(135deg,#001a10,#005030)"},
+  {id:91,name:"Club Mahindra Ooty",city:"Ooty",state:"Tamil Nadu",stars:4,price:7000,badge:"Family Resort",rating:4.5,reviews:2341,desc:"A popular family resort in lush Nilgiri greenery with activities for all ages and warm Tamil hospitality.",amenities:["Family Activities","Pool","Nilgiri Walks","Dining","Spa","Kids Club","Gym","Heritage"],img:IMGS.club_mahindra_ooty,gradient:"linear-gradient(135deg,#002010,#006040)"},
+  {id:92,name:"GRT Grand Trichy",city:"Trichy",state:"Tamil Nadu",stars:5,price:6000,badge:"Signature",rating:4.6,reviews:1876,desc:"Trichy's finest luxury hotel, famous for its rooftop pool with views of the iconic Rock Fort Temple.",amenities:["Rock Fort View","Rooftop Pool","Spa","Fine Dining","Conference","Gym","Butler","Bar"],img:IMGS.grt_grand_trichy,gradient:"linear-gradient(135deg,#3d0a00,#7a2000)"},
+  {id:93,name:"Sangam Hotel Trichy",city:"Trichy",state:"Tamil Nadu",stars:4,price:5000,badge:"Heritage Brand",rating:4.4,reviews:1432,desc:"A venerable Trichy institution with 40 years of hospitality — known for exceptional Tamil Nadu cuisine.",amenities:["Tamil Cuisine","Pool","Heritage","Business Hub","Conference","Gym","Spa","Bar"],img:IMGS.sangam_trichy,gradient:"linear-gradient(135deg,#1a1000,#4a3000)"},
+  {id:94,name:"Hotel Femina Trichy",city:"Trichy",state:"Tamil Nadu",stars:4,price:4000,badge:"Classic",rating:4.2,reviews:1234,desc:"A classic mid-scale hotel in the heart of Trichy, close to the Srirangam temple complex.",amenities:["Srirangam Access","Multi Cuisine","Business","A/C","Pool","Conference","Bar","Gym"],img:IMGS.femina_trichy,gradient:"linear-gradient(135deg,#001a00,#005000)"},
+  {id:95,name:"Breeze Residency Trichy",city:"Trichy",state:"Tamil Nadu",stars:4,price:4500,badge:"City Comfort",rating:4.3,reviews:987,desc:"Modern and centrally located with a lively multi-cuisine restaurant and reliable business facilities.",amenities:["Central Location","Multi Cuisine","Conference","A/C","Pool","Gym","Bar","Wi-Fi"],img:IMGS.breeze_trichy,gradient:"linear-gradient(135deg,#0a0a20,#2a2060)"},
+  {id:96,name:"Mayura Hotel Trichy",city:"Trichy",state:"Tamil Nadu",stars:3,price:3000,badge:"Budget Comfort",rating:4.0,reviews:876,desc:"Comfortable, clean and affordable with easy access to Trichy's temples and the Cauvery River ghats.",amenities:["Temple Access","River Ghats","Parking","Tamil Food","Conference","Bar","Wi-Fi","24h Service"],img:IMGS.mayura_trichy,gradient:"linear-gradient(135deg,#1a0800,#5a2800)"},
+  {id:97,name:"Ideal River View Resort",city:"Thanjavur",state:"Tamil Nadu",stars:4,price:5000,badge:"Cauvery View",rating:4.4,reviews:1234,desc:"On the banks of the Cauvery River, this resort offers direct views of paddy fields and heritage temples nearby.",amenities:["Cauvery View","Heritage Tours","Pool","Dining","Conference","Spa","Bar","Gym"],img:IMGS.ideal_river_view,gradient:"linear-gradient(135deg,#1a0a00,#5a2000)"},
+  {id:98,name:"Hotel Parisutham Thanjavur",city:"Thanjavur",state:"Tamil Nadu",stars:4,price:4500,badge:"Heritage",rating:4.4,reviews:1543,desc:"A heritage-inspired hotel close to the Brihadeeswarar Temple — a UNESCO World Heritage Site.",amenities:["Temple Walk","Heritage Rooms","Pool","Tamil Cuisine","Conference","Spa","Bar","Gym"],img:IMGS.parisutham_thanjavur,gradient:"linear-gradient(135deg,#2a1000,#6a3000)"},
+  {id:99,name:"GRT Regency Thanjavur",city:"Thanjavur",state:"Tamil Nadu",stars:4,price:5500,badge:"GRT Brand",rating:4.5,reviews:1234,desc:"Part of the reputed GRT Hotels chain, offering luxury hospitality close to Tanjore's cultural landmarks.",amenities:["Temple Tours","Pool","Multi Cuisine","Spa","Conference","Gym","Bar","Butler"],img:IMGS.grt_regency_thanjavur,gradient:"linear-gradient(135deg,#1a0000,#5a0000)"},
+  {id:100,name:"Sangam Thanjavur",city:"Thanjavur",state:"Tamil Nadu",stars:4,price:4000,badge:"Classic",rating:4.3,reviews:1087,desc:"A long-established hotel near the UNESCO Brihadeeswarar Temple, known for classical music shows.",amenities:["Carnatic Music Shows","Temple Proximity","Dining","A/C","Pool","Conference","Bar","Gym"],img:IMGS.sangam_thanjavur,gradient:"linear-gradient(135deg,#001a20,#005060)"},
+  {id:101,name:"Chola Sheraton Thanjavur",city:"Thanjavur",state:"Tamil Nadu",stars:4,price:4800,badge:"Sheraton",rating:4.4,reviews:876,desc:"An international brand in the heart of the Chola heartland, with a pool and multi-cuisine restaurant.",amenities:["International Brand","Pool","Multi Cuisine","Business","Conference","Gym","Spa","Bar"],img:IMGS.chola_sheraton,gradient:"linear-gradient(135deg,#002020,#006060)"},
+  {id:102,name:"Carlton Hotel Kodaikanal",city:"Kodaikanal",state:"Tamil Nadu",stars:5,price:16000,badge:"Lakeside Palace",rating:4.8,reviews:2341,desc:"A colonial heritage hotel on the shores of Kodaikanal Lake — the only starred hotel in the Princess of Hill Stations.",amenities:["Lake Access","Heritage","Rowing Boats","Fine Dining","Spa","Butler","Gardens","Heritage Tours"],img:IMGS.carlton_kodaikanal,gradient:"linear-gradient(135deg,#001a10,#004a30)"},
+  {id:103,name:"Sterling Kodaikanal",city:"Kodaikanal",state:"Tamil Nadu",stars:4,price:8000,badge:"Hill Resort",rating:4.5,reviews:1765,desc:"A tranquil resort amidst Kodaikanal's pine forests with cosy cottages, a pool and panoramic valley views.",amenities:["Valley Views","Pool","Pine Forest Walks","Cottages","Spa","Family Activities","Dining","Gym"],img:IMGS.sterling_kodaikanal,gradient:"linear-gradient(135deg,#002a10,#007030)"},
+  {id:104,name:"Club Mahindra Kodaikanal",city:"Kodaikanal",state:"Tamil Nadu",stars:4,price:7500,badge:"Family Resort",rating:4.5,reviews:1987,desc:"A much-loved family resort above the lake offering adventure activities, a pool and misty mountain views.",amenities:["Adventure Activities","Pool","Mountain Views","Family","Spa","Kids Club","Dining","Gym"],img:IMGS.club_mahindra_kodai,gradient:"linear-gradient(135deg,#001810,#004a30)"},
+  {id:105,name:"Villa Retreat Kodaikanal",city:"Kodaikanal",state:"Tamil Nadu",stars:3,price:4500,badge:"Heritage",rating:4.3,reviews:987,desc:"A 1890s colonial villa turned boutique hotel. Antique furniture, open fireplaces and sweeping sunset views.",amenities:["Colonial Villa","Fireplace","Sunset Views","Heritage","Dining","Gardens","Bar","Trekking"],img:IMGS.villa_retreat_kodai,gradient:"linear-gradient(135deg,#0a1000,#2a3000)"},
+  {id:106,name:"Hotel Jewel Kodaikanal",city:"Kodaikanal",state:"Tamil Nadu",stars:3,price:3500,badge:"Valley Views",rating:4.2,reviews:876,desc:"A clean, comfortable hotel perched on Kodaikanal's cliffs with extraordinary valley and forest panoramas.",amenities:["Cliff Views","Forest Walks","Restaurant","A/C","Bar","Conference","Parking","Wi-Fi"],img:IMGS.jewel_kodaikanal,gradient:"linear-gradient(135deg,#002010,#006040)"},
+  {id:107,name:"Hotel Saravana Bhavan Salem",city:"Salem",state:"Tamil Nadu",stars:4,price:3800,badge:"City Classic",rating:4.2,reviews:1234,desc:"Named after the legendary restaurant chain, this hotel brings five-star service to Salem's commercial hub.",amenities:["South Indian Cuisine","Pool","Business","Conference","Gym","Spa","Bar","Valet"],img:IMGS.saravana_bhavan_salem,gradient:"linear-gradient(135deg,#200000,#600000)"},
+  {id:108,name:"Radha Park Inn Salem",city:"Salem",state:"Tamil Nadu",stars:4,price:4000,badge:"Landmark",rating:4.3,reviews:1087,desc:"Salem's most established luxury hotel with excellent dining and a rooftop garden overlooking the Shevaroy Hills.",amenities:["Shevaroy Views","Rooftop Garden","Pool","Dining","Conference","Gym","Spa","Bar"],img:IMGS.radha_park_salem,gradient:"linear-gradient(135deg,#001a00,#005000)"},
+  {id:109,name:"Hotel Selvam Salem",city:"Salem",state:"Tamil Nadu",stars:4,price:3500,badge:"Business",rating:4.1,reviews:876,desc:"A well-regarded business hotel with modern amenities and a quality multi-cuisine restaurant in central Salem.",amenities:["Multi Cuisine","Conference","A/C","Wi-Fi","Pool","Gym","Bar","Valet"],img:IMGS.selvam_salem,gradient:"linear-gradient(135deg,#1a1a00,#4a4000)"},
+  {id:110,name:"GRT Hotels Salem",city:"Salem",state:"Tamil Nadu",stars:4,price:4500,badge:"GRT Brand",rating:4.4,reviews:987,desc:"The GRT group's Salem property — trusted for comfortable stays and a full-service dining experience.",amenities:["Full Service","Pool","GRT Brand","Dining","Conference","Gym","Spa","Bar"],img:IMGS.grt_salem,gradient:"linear-gradient(135deg,#001a20,#005060)"},
+  {id:111,name:"Hotel Green Park Salem",city:"Salem",state:"Tamil Nadu",stars:4,price:4200,badge:"Nature Themed",rating:4.3,reviews:876,desc:"A nature-themed hotel near Salem Steel Plant with lush gardens and a well-maintained pool.",amenities:["Gardens","Pool","Multi Cuisine","Parking","Conference","Gym","Spa","Bar"],img:IMGS.green_park_salem,gradient:"linear-gradient(135deg,#002000,#006000)"},
+  {id:112,name:"Hotel Darling Residency",city:"Vellore",state:"Tamil Nadu",stars:4,price:4000,badge:"CMC Proximity",rating:4.3,reviews:1432,desc:"The top choice for families visiting CMC Hospital — luxurious rooms with a multi-cuisine restaurant.",amenities:["CMC Access","Multi Cuisine","A/C","Medical Hub","Pool","Conference","Gym","Bar"],img:IMGS.darling_vellore,gradient:"linear-gradient(135deg,#001a30,#004080)"},
+  {id:113,name:"Arcot Grand Vellore",city:"Vellore",state:"Tamil Nadu",stars:4,price:3800,badge:"City Centre",rating:4.2,reviews:1087,desc:"Centrally located near the iconic Vellore Fort and Golden Temple, ideal for pilgrims and history lovers.",amenities:["Fort Access","Golden Temple","Pool","Dining","Conference","Gym","Bar","Parking"],img:IMGS.arcot_grand,gradient:"linear-gradient(135deg,#1a0800,#5a2800)"},
+  {id:114,name:"Hotel Vels Park Vellore",city:"Vellore",state:"Tamil Nadu",stars:4,price:4200,badge:"Park Views",rating:4.3,reviews:876,desc:"Adjacent to a public park, this hotel offers lush green views, a full-service spa and a conference centre.",amenities:["Park Views","Spa","Conference","Pool","Gym","Multi Cuisine","Bar","Valet"],img:IMGS.vels_park_vellore,gradient:"linear-gradient(135deg,#002800,#007800)"},
+  {id:115,name:"Residency Vellore",city:"Vellore",state:"Tamil Nadu",stars:4,price:3500,badge:"Heritage Brand",rating:4.2,reviews:765,desc:"Part of the Residency hotel chain, known for consistent quality and Tamil Nadu cuisine.",amenities:["Tamil Cuisine","Pool","Heritage Brand","Business","Conference","Gym","Bar","Parking"],img:IMGS.residency_vellore,gradient:"linear-gradient(135deg,#001010,#003030)"},
+  {id:116,name:"Hotel VGN Vellore",city:"Vellore",state:"Tamil Nadu",stars:3,price:3000,badge:"Value",rating:4.0,reviews:654,desc:"Clean, modern and affordable with easy access to Vellore's medical institutions and historic sites.",amenities:["Central Location","A/C","Multi Cuisine","Wi-Fi","Conference","Bar","Parking","24h Service"],img:IMGS.vgn_vellore,gradient:"linear-gradient(135deg,#0a0000,#2a0000)"},
+  {id:117,name:"Hotel Cozy 2000",city:"Tirunelveli",state:"Tamil Nadu",stars:4,price:4000,badge:"Nellai Classic",rating:4.3,reviews:1234,desc:"The top luxury hotel in the land of Halwa — known for genuine Tirunelveli hospitality and multi-cuisine dining.",amenities:["Tirunelveli Halwa","Multi Cuisine","Pool","Business","Conference","Gym","Spa","Bar"],img:IMGS.cozy_2000,gradient:"linear-gradient(135deg,#2a1000,#7a3000)"},
+  {id:118,name:"Hotel Sankari Tirunelveli",city:"Tirunelveli",state:"Tamil Nadu",stars:4,price:3800,badge:"River View",rating:4.2,reviews:987,desc:"Near the Tamirabarani River, this hotel provides access to the rich temple culture of southern Tamil Nadu.",amenities:["Tamirabarani View","Temple Tours","Pool","Dining","Conference","Gym","Bar","Parking"],img:IMGS.sankari_tirunelveli,gradient:"linear-gradient(135deg,#001a20,#005060)"},
+  {id:119,name:"Maharaja Hotel Tirunelveli",city:"Tirunelveli",state:"Tamil Nadu",stars:3,price:3200,badge:"Heritage",rating:4.1,reviews:876,desc:"A classic heritage hotel in Nellai famous for its authentic local cuisine and warm southern hospitality.",amenities:["Local Cuisine","Heritage","Conference","Parking","Pool","Bar","Wi-Fi","24h Service"],img:IMGS.maharaja_tirunelveli,gradient:"linear-gradient(135deg,#200a00,#602000)"},
+  {id:120,name:"Hotel Anandha Inn",city:"Tirunelveli",state:"Tamil Nadu",stars:4,price:4200,badge:"Business Hub",rating:4.3,reviews:1087,desc:"A modern business hotel with spacious conference facilities and a well-regarded multi-cuisine restaurant.",amenities:["Conference","Multi Cuisine","A/C","Wi-Fi","Pool","Gym","Spa","Bar"],img:IMGS.anandha_inn,gradient:"linear-gradient(135deg,#0a0a20,#2a2060)"},
+  {id:121,name:"Valliammai Residency",city:"Tirunelveli",state:"Tamil Nadu",stars:3,price:2800,badge:"Budget Luxury",rating:4.0,reviews:765,desc:"An affordable yet comfortable stay in Tirunelveli, popular for medical tourism visitors.",amenities:["Medical Access","A/C","Tamil Meals","Parking","Conference","Bar","Wi-Fi","24h Service"],img:IMGS.valliammai,gradient:"linear-gradient(135deg,#001a00,#005000)"},
+  {id:122,name:"Hotel Tamil Nadu Rameswaram",city:"Rameswaram",state:"Tamil Nadu",stars:4,price:5000,badge:"TTDC",rating:4.3,reviews:2103,desc:"Managed by Tamil Nadu Tourism, this iconic seafront property faces the Palk Strait with Ramanathaswamy views.",amenities:["Sea View","Temple Access","TTDC","Cultural Shows","Pool","Conference","Bar","Restaurant"],img:IMGS.tamil_nadu_rameswaram,gradient:"linear-gradient(135deg,#002040,#005080)"},
+  {id:123,name:"Hotel Pearl Rameswaram",city:"Rameswaram",state:"Tamil Nadu",stars:4,price:4500,badge:"Pilgrimage",rating:4.2,reviews:1765,desc:"A well-appointed hotel moments from the Ramanathaswamy Temple, catering to pilgrims with vegetarian-only meals.",amenities:["Temple Proximity","Veg Dining","Clean Rooms","Tours","Pool","Conference","Bar","Parking"],img:IMGS.pearl_rameswaram,gradient:"linear-gradient(135deg,#001a30,#005060)"},
+  {id:124,name:"Gateway Hotel Rameswaram",city:"Rameswaram",state:"Tamil Nadu",stars:4,price:6000,badge:"Taj Brand",rating:4.5,reviews:1432,desc:"The Taj group's presence in the pilgrimage city — reliable luxury within walking distance of the famous temple.",amenities:["Temple Walk","Taj Service","Pool","Dining","Conference","Gym","Bar","Concierge"],img:IMGS.gateway_rameswaram,gradient:"linear-gradient(135deg,#1a0800,#5a2800)"},
+  {id:125,name:"Hotel Daiwik Rameswaram",city:"Rameswaram",state:"Tamil Nadu",stars:4,price:5500,badge:"Devotion",rating:4.4,reviews:2341,desc:"A purpose-built pilgrim luxury hotel offering ritually pure vegetarian meals and daily temple darshan packages.",amenities:["Darshan Packages","Veg Meals","Spa","Sea Views","Pool","Conference","Yoga","Bar"],img:IMGS.daiwik_rameswaram,gradient:"linear-gradient(135deg,#003040,#007080)"},
+  {id:126,name:"Hotel La Maison Rameswaram",city:"Rameswaram",state:"Tamil Nadu",stars:3,price:3500,badge:"Heritage",rating:4.1,reviews:876,desc:"A charming heritage guesthouse on the sacred island, close to Agni Tirtham and the famous railway bridge.",amenities:["Heritage","Agni Tirtham Access","Local Food","Tours","Bar","Parking","Wi-Fi","24h Service"],img:IMGS.la_maison_rameswaram,gradient:"linear-gradient(135deg,#001820,#004860)"},
+  {id:127,name:"Sparsa Resort Kanyakumari",city:"Kanyakumari",state:"Tamil Nadu",stars:5,price:7000,badge:"Tip of India",rating:4.7,reviews:2987,desc:"At the southernmost tip of India where three seas meet — sunrise and sunset are both visible from the rooms.",amenities:["3-Sea View","Sunrise & Sunset","Pool","Sea Tours","Spa","Fine Dining","Butler","Concierge"],img:IMGS.sparsa_kanyakumari,gradient:"linear-gradient(135deg,#001a40,#003d80)"},
+  {id:128,name:"Hotel Tamil Nadu Kanyakumari",city:"Kanyakumari",state:"Tamil Nadu",stars:4,price:5000,badge:"TTDC",rating:4.3,reviews:2103,desc:"TTDC's flagship property on the seafront — commanding views of the Vivekananda Rock Memorial.",amenities:["Vivekananda View","TTDC","Sea View","Cultural","Pool","Conference","Bar","Restaurant"],img:IMGS.tamil_nadu_kanyakumari,gradient:"linear-gradient(135deg,#001030,#003060)"},
+  {id:129,name:"Hotel Saravana Kanyakumari",city:"Kanyakumari",state:"Tamil Nadu",stars:4,price:4500,badge:"Seafront",rating:4.2,reviews:1543,desc:"A welcoming seafront hotel with large rooms facing the Indian Ocean, popular for its affordable comfort.",amenities:["Ocean Front","Veg Dining","Clean Rooms","Parking","Pool","Conference","Bar","Wi-Fi"],img:IMGS.saravana_kanyakumari,gradient:"linear-gradient(135deg,#002030,#006060)"},
+  {id:130,name:"The Seashore Hotel",city:"Kanyakumari",state:"Tamil Nadu",stars:3,price:3800,badge:"Budget Seafront",rating:4.1,reviews:1234,desc:"Directly on the beach road at Land's End with the Thiruvalluvar Statue visible from the balcony.",amenities:["Thiruvalluvar View","Beach Walk","A/C","Restaurant","Bar","Conference","Parking","Wi-Fi"],img:IMGS.seashore_kanyakumari,gradient:"linear-gradient(135deg,#001a20,#005050)"},
+  {id:131,name:"GRT Regency Kanyakumari",city:"Kanyakumari",state:"Tamil Nadu",stars:4,price:4500,badge:"GRT Brand",rating:4.4,reviews:1087,desc:"GRT Hotels' outpost at the land's end — known for quality service and views of the three-sea confluence.",amenities:["Sea Confluence View","GRT Brand","Pool","Dining","Conference","Gym","Spa","Bar"],img:IMGS.grt_regency_kanyakumari,gradient:"linear-gradient(135deg,#0a0000,#2a0020)"},
+];
+
+// Rooms definition by star rating
+function getRooms(hotel) {
+  const base = hotel.price;
+  if (hotel.stars >= 5) {
+    return [
+      {name:"Deluxe Room",desc:"Spacious and elegantly appointed with city/garden views, king-size bed, and premium bath amenities.",price:base,img:ROOM_IMGS[0],features:["King Bed","City View","Free WiFi","24h Service"],avail:Math.floor(Math.random()*5)+2},
+      {name:"Premium Room",desc:"Enhanced luxury with separate living area, premium minibar and choice of view.",price:Math.round(base*1.3),img:ROOM_IMGS[1],features:["King Bed","Premium View","Minibar","Lounge Access"],avail:Math.floor(Math.random()*4)+1},
+      {name:"Club Suite",desc:"Butler service, separate bedroom and sitting room with panoramic views and in-room dining.",price:Math.round(base*1.8),img:ROOM_IMGS[2],features:["Butler Service","Suite","Club Lounge","Panoramic View"],avail:Math.floor(Math.random()*3)+1},
+      {name:"Presidential Suite",desc:"The pinnacle of luxury — a full apartment experience with personal chef, private terrace and exclusive amenities.",price:Math.round(base*3.5),img:ROOM_IMGS[3],features:["Personal Chef","Private Terrace","Jacuzzi","Dedicated Butler"],avail:1},
+    ];
+  } else if (hotel.stars === 4) {
+    return [
+      {name:"Superior Room",desc:"Comfortable and stylish room with modern amenities and garden or pool view.",price:base,img:ROOM_IMGS[0],features:["Queen Bed","Garden View","Free WiFi","TV"],avail:Math.floor(Math.random()*6)+3},
+      {name:"Deluxe Room",desc:"Larger space with upgraded furnishings, premium toiletries and enhanced views.",price:Math.round(base*1.25),img:ROOM_IMGS[1],features:["King Bed","Pool View","Minibar","Premium Toiletries"],avail:Math.floor(Math.random()*4)+2},
+      {name:"Junior Suite",desc:"Separate sitting area with sofa bed, ideal for extended stays and families.",price:Math.round(base*1.6),img:ROOM_IMGS[2],features:["Sitting Area","Sofa Bed","City View","Minibar"],avail:Math.floor(Math.random()*3)+1},
+    ];
+  } else {
+    return [
+      {name:"Standard Room",desc:"Clean, comfortable and well-equipped for a great value stay.",price:base,img:ROOM_IMGS[0],features:["Double Bed","A/C","Free WiFi","TV"],avail:Math.floor(Math.random()*8)+4},
+      {name:"Deluxe Room",desc:"A notch above standard with better views and premium amenities.",price:Math.round(base*1.3),img:ROOM_IMGS[1],features:["King Bed","Better View","Minibar","TV"],avail:Math.floor(Math.random()*4)+2},
+    ];
+  }
+}
+
+// Reviews pool
+const REVIEW_NAMES = ["Priya S.","Rahul M.","Anika K.","Vikram P.","Shreya R.","Arjun N.","Kavitha L.","Sundar V.","Deepa H.","Ravi C.","Anjali B.","Kiran T.","Meera G.","Sanjay D.","Nisha A.","Vijay R.","Lakshmi P.","Mohan S."];
+const REVIEW_TEXTS = [
+  "Absolutely breathtaking stay. The staff remembered my preferences from check-in and the room exceeded all expectations.",
+  "World-class hospitality. The spa was divine and the restaurant had some of the finest cuisine I have had anywhere in India.",
+  "Perfect in every way. Woke up to stunning views every morning. Will definitely be back.",
+  "The service was impeccable. Every detail was taken care of before we even had to ask.",
+  "One of the finest hotels I have stayed at. The food, the rooms, the staff — all exceptional.",
+  "Stunning property with beautiful architecture. The pool area is gorgeous and the breakfast spread was phenomenal.",
+  "Truly a five-star experience. The room was immaculate and the concierge team organised everything perfectly for our trip.",
+  "An unforgettable experience. The heritage and history of this property adds so much to the stay.",
+];
+
+function getReviews(hotel) {
+  const count = Math.min(4, Math.max(3, Math.floor(hotel.reviews/500)));
+  const result = [];
+  const used = new Set();
+  for (let i = 0; i < count; i++) {
+    let ni = Math.floor(Math.random()*REVIEW_NAMES.length);
+    while(used.has(ni)) ni = Math.floor(Math.random()*REVIEW_NAMES.length);
+    used.add(ni);
+    const stars = 4 + (Math.random() > 0.3 ? 1 : 0);
+    const daysAgo = Math.floor(Math.random()*90)+1;
+    result.push({
+      name: REVIEW_NAMES[ni],
+      stars,
+      text: REVIEW_TEXTS[Math.floor(Math.random()*REVIEW_TEXTS.length)],
+      date: new Date(Date.now() - daysAgo*86400000).toLocaleDateString('en-IN',{month:'short',year:'numeric'})
+    });
+  }
+  return result;
+}
+
+// Amenity icons
+const AMENITY_ICONS = {
+  "Sea View":"🌊","Spa":"💆","Fine Dining":"🍽️","Pool":"🏊","Butler":"🛎️","Concierge":"🎩","Valet":"🚗","Heritage Tours":"🏛️",
+  "Rooftop Pool":"🏊","Skyline View":"🌃","BLISS Spa":"💆","Bar":"🍸","Gym":"💪","Infinity Pool":"🌊","Spa":"💆","Gardens":"🌿",
+  "Beach":"🏖️","Butler Service":"🛎️","Private Pool":"🏊","Lake View":"🏞️","Boat Rides":"⛵","Mountain Views":"⛰️",
+  "Yoga":"🧘","Nature Walks":"🌲","Heritage":"🏰","Multi Cuisine":"🍴","Conference":"📊","Business Hub":"💼",
+  "Ayurveda":"🌿","Houseboat":"🚤","Jungle Safari":"🦁","Elephant Tours":"🐘","Horse Carriage":"🐎","Polo":"🏇",
+  "Golf":"⛳","Water Sports":"🏄","Trekking":"🥾","Fireplace":"🔥","Log Fires":"🔥","Tea Estate Views":"🍃",
+  "Temple Tours":"🛕","Cultural Shows":"🎭","Family Activities":"👨‍👩‍👧‍👦","Kids Club":"🧒","Birdwatching":"🦜",
+};
+
+function getAmenityIcon(name) {
+  for(const [k,v] of Object.entries(AMENITY_ICONS)) {
+    if(name.toLowerCase().includes(k.toLowerCase())) return v;
+  }
+  return "✨";
+}
+
+// Gallery generation per hotel
+function getGalleryImages(hotel) {
+  const seed = hotel.id;
+  const main = hotel.img;
+  // Pick 2 other images from pool
+  const pool = [...GALLERY_POOL];
+  const idx1 = (seed * 7) % pool.length;
+  const idx2 = (seed * 11 + 3) % pool.length;
+  return [main, pool[idx1], pool[idx2 === idx1 ? (idx2+1)%pool.length : idx2]];
+}
+
+// ══════════════════════════════════════
+// STATE
+// ══════════════════════════════════════
+let currentUser = null;
+let registeredUsers = JSON.parse(localStorage.getItem('luxeUsers') || '{}');
+let myBookings = JSON.parse(localStorage.getItem('luxeBookings') || '[]');
+let currentHotel = null;
+let selectedRoom = null;
+let lightboxImages = [];
+let lightboxIndex = 0;
+let currentData = [...hotels];
+
+// Pre-add demo user
+if (!registeredUsers['demo@luxestay.com']) {
+  registeredUsers['demo@luxestay.com'] = {name:'Demo Guest', password:'demo123', email:'demo@luxestay.com'};
+  localStorage.setItem('luxeUsers', JSON.stringify(registeredUsers));
+}
+
+// ══════════════════════════════════════
+// INIT
+// ══════════════════════════════════════
+const today = new Date().toISOString().split('T')[0];
+document.getElementById('checkIn').value = today;
+document.getElementById('checkIn').min = today;
+const tmr = new Date(Date.now()+86400000).toISOString().split('T')[0];
+document.getElementById('checkOut').value = tmr;
+document.getElementById('checkOut').min = tmr;
+
+renderHotels(hotels);
+
+// ══════════════════════════════════════
+// RENDER CARDS
+// ══════════════════════════════════════
+function renderHotels(list) {
+  const grid = document.getElementById('hotelGrid');
+  const noR = document.getElementById('noResults');
+  const cnt = document.getElementById('resultsCount');
+  grid.innerHTML = '';
+  cnt.textContent = list.length + ' hotel' + (list.length!==1?'s':'');
+  if(!list.length){noR.classList.add('show');return}
+  noR.classList.remove('show');
+  list.forEach((h,i) => {
+    const card = document.createElement('div');
+    card.className = 'hotel-card';
+    card.style.animation = `fadeInUp 0.5s ease ${i*0.05}s both`;
+    const stars = '★'.repeat(h.stars);
+    const ratingDisp = h.rating.toFixed(1);
+    card.innerHTML = `
+      <div class="hotel-img" style="background:${h.gradient}">
+        <img src="${h.img}" alt="${h.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=600&q=70'">
+        <div class="hotel-img-overlay"></div>
+        <span class="hotel-badge">${h.badge}</span>
+        <span class="hotel-rating-badge">${ratingDisp} ★</span>
+        <span class="hotel-stars">${stars}</span>
+      </div>
+      <div class="hotel-body">
+        <div class="hotel-city">📍 ${h.city}, ${h.state}</div>
+        <div class="hotel-name-card">${h.name}</div>
+        <div class="hotel-desc-card">${h.desc}</div>
+        <div class="hotel-amenities-row">${h.amenities.slice(0,4).map(a=>`<span class="amenity-pill">${a}</span>`).join('')}</div>
+        <div class="hotel-footer-card">
+          <div><span class="hotel-price-label">per night from</span><span class="hotel-price">₹${h.price.toLocaleString('en-IN')}</span></div>
+          <button class="hotel-book-btn" onclick="event.stopPropagation();openHotelDetail(${h.id})">View & Book</button>
+        </div>
+      </div>`;
+    card.onclick = () => openHotelDetail(h.id);
+    grid.appendChild(card);
+  });
+}
+
+// ══════════════════════════════════════
+// HOTEL DETAIL
+// ══════════════════════════════════════
+function openHotelDetail(id) {
+  const h = hotels.find(x=>x.id===id);
+  if(!h) return;
+  currentHotel = h;
+  selectedRoom = null;
+
+  // Header
+  document.getElementById('detailHotelNameHeader').textContent = h.name;
+  document.getElementById('detailStarsHeader').textContent = '★'.repeat(h.stars);
+  document.getElementById('detailBadgeHeader').textContent = h.badge;
+
+  // Gallery
+  const gImgs = getGalleryImages(h);
+  lightboxImages = [...gImgs, ...GALLERY_POOL.slice(0,3)];
+  const gallery = document.getElementById('detailGallery');
+  gallery.innerHTML = `
+    <div class="gallery-main" onclick="openLightbox(0)">
+      <img src="${gImgs[0]}" alt="${h.name}" onerror="this.src='https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=900&q=80'">
+      <div class="gallery-count" onclick="event.stopPropagation();openLightbox(0)">📷 View All Photos</div>
+    </div>
+    <div class="gallery-thumb" onclick="openLightbox(1)"><img src="${gImgs[1]}" alt="${h.name} photo 2" onerror="this.src='https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=600&q=80'"></div>
+    <div class="gallery-thumb" onclick="openLightbox(2)"><img src="${gImgs[2]}" alt="${h.name} photo 3" onerror="this.src='https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80'"></div>`;
+
+  // Info
+  document.getElementById('detailCity').textContent = `📍 ${h.city}, ${h.state}`;
+  document.getElementById('detailName').textContent = h.name;
+  document.getElementById('detailPriceHero').textContent = `₹${h.price.toLocaleString('en-IN')}`;
+  document.getElementById('detailDesc').textContent = h.desc;
+
+  // Rating row
+  const ratingRow = document.getElementById('detailRatingRow');
+  ratingRow.innerHTML = `
+    <span style="color:var(--gold);font-size:18px">${'★'.repeat(Math.floor(h.rating))}</span>
+    <span style="font-size:20px;font-weight:700;color:var(--gold-light);font-family:'Playfair Display',serif">${h.rating.toFixed(1)}</span>
+    <span style="font-size:13px;color:var(--muted)">${h.reviews.toLocaleString()} reviews</span>
+    <span style="background:rgba(74,222,128,0.1);border:1px solid rgba(74,222,128,0.25);color:#4ade80;padding:3px 10px;border-radius:6px;font-size:11px">${h.stars}-Star ${h.stars>=5?'Luxury':'Hotel'}</span>`;
+
+  // Amenity pills
+  document.getElementById('detailAmenityPills').innerHTML = h.amenities.map(a=>`<span class="amenity-pill">${a}</span>`).join('');
+
+  // Amenities grid
+  document.getElementById('detailAmenitiesGrid').innerHTML = h.amenities.map(a=>`
+    <div class="amenity-item">
+      <div class="amenity-icon">${getAmenityIcon(a)}</div>
+      <div class="amenity-name">${a}</div>
+    </div>`).join('');
+
+  // Rooms
+  const rooms = getRooms(h);
+  document.getElementById('detailRooms').innerHTML = rooms.map((r,i)=>`
+    <div class="room-card">
+      <img class="room-img" src="${r.img}" alt="${r.name}" onerror="this.src='${ROOM_IMGS[0]}'">
+      <div class="room-info">
+        <div class="room-name">${r.name}</div>
+        <div class="room-desc">${r.desc}</div>
+        <div class="room-features">${r.features.map(f=>`<span class="room-feature">${f}</span>`).join('')}</div>
+      </div>
+      <div class="room-pricing">
+        <div class="room-price-label">per night</div>
+        <div class="room-price">₹${r.price.toLocaleString('en-IN')}</div>
+        <div class="room-avail">✓ ${r.avail} room${r.avail>1?'s':''} left</div>
+        <button class="select-room-btn" id="roomBtn${i}" onclick="selectRoom(${i}, '${r.name}', ${r.price})">Select Room</button>
+      </div>
+    </div>`).join('');
+
+  // Booking panel
+  document.getElementById('bpHotelName').textContent = h.name;
+  document.getElementById('bpPrice').innerHTML = `₹${h.price.toLocaleString('en-IN')} <span>/night</span>`;
+  document.getElementById('bpStars').textContent = '★'.repeat(h.stars);
+  document.getElementById('bpRating').textContent = `${h.rating.toFixed(1)} · ${h.reviews.toLocaleString()} reviews`;
+
+  // Room dropdown in booking panel
+  const sel = document.getElementById('bpRoomType');
+  sel.innerHTML = rooms.map(r=>`<option value="${r.price}">${r.name} — ₹${r.price.toLocaleString('en-IN')}</option>`).join('');
+
+  // Dates
+  const bpCI = document.getElementById('bpCheckIn');
+  const bpCO = document.getElementById('bpCheckOut');
+  const mainCI = document.getElementById('checkIn').value || today;
+  const mainCO = document.getElementById('checkOut').value || tmr;
+  bpCI.value = mainCI; bpCI.min = today;
+  bpCO.value = mainCO; bpCO.min = mainCI;
+  calcTotal();
+
+  // Ratings overview
+  const bigR = h.rating;
+  document.getElementById('bigRatingNum').textContent = bigR.toFixed(1);
+  document.getElementById('bigRatingStars').textContent = '★'.repeat(Math.round(bigR));
+  document.getElementById('bigRatingCount').textContent = `${h.reviews.toLocaleString()} reviews`;
+  const bars = [
+    {label:'5',pct:Math.round(bigR>=4.5?70:bigR>=4?50:30)},
+    {label:'4',pct:Math.round(bigR>=4?25:20)},
+    {label:'3',pct:8},{label:'2',pct:4},{label:'1',pct:3}
+  ];
+  document.getElementById('ratingBars').innerHTML = bars.map(b=>`
+    <div class="rating-bar-row">
+      <span class="rating-label">${b.label}</span>
+      <div class="rating-bar-bg"><div class="rating-bar-fill" style="width:${b.pct}%"></div></div>
+      <span>${b.pct}%</span>
+    </div>`).join('');
+
+  // Reviews
+  const revs = getReviews(h);
+  document.getElementById('reviewsList').innerHTML = revs.map(r=>`
+    <div class="review-card">
+      <div class="review-header">
+        <div>
+          <div class="reviewer-name">${r.name}</div>
+          <div class="review-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+        </div>
+        <div class="reviewer-date">${r.date}</div>
+      </div>
+      <div class="review-text">${r.text}</div>
+    </div>`).join('');
+
+  // Sticky bar
+  document.getElementById('stickyName').textContent = h.name;
+  document.getElementById('stickyCity').textContent = `${h.city}, ${h.state}`;
+  document.getElementById('stickyPrice').textContent = `₹${h.price.toLocaleString('en-IN')}`;
+
+  // Show detail page
+  document.getElementById('detailPage').classList.add('show');
+  document.getElementById('detailPage').scrollTop = 0;
+  document.getElementById('stickyBar').classList.remove('show');
+
+  // Scroll listener for sticky bar
+  const dp = document.getElementById('detailPage');
+  dp.onscroll = () => {
+    const bp = document.getElementById('bookingPanel');
+    const rect = bp.getBoundingClientRect();
+    if(rect.bottom < 0) document.getElementById('stickyBar').classList.add('show');
+    else document.getElementById('stickyBar').classList.remove('show');
+  };
+}
+
+function closeDetail() {
+  document.getElementById('detailPage').classList.remove('show');
+  document.getElementById('stickyBar').classList.remove('show');
+  currentHotel = null;
+  selectedRoom = null;
+}
+
+function goHome() {
+  closeDetail();
+  document.getElementById('myBookingsModal').classList.remove('show');
+  window.scrollTo(0,0);
+}
+
+function scrollToBooking() {
+  const dp = document.getElementById('detailPage');
+  const bp = document.getElementById('bookingPanel');
+  bp.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function selectRoom(idx, name, price) {
+  selectedRoom = {name, price};
+  // Update all buttons
+  document.querySelectorAll('.select-room-btn').forEach((btn,i)=>{
+    if(i===idx){
+      btn.textContent='✓ Selected';
+      btn.classList.add('selected');
+    } else {
+      btn.textContent='Select Room';
+      btn.classList.remove('selected');
+    }
+  });
+  // Update booking panel dropdown
+  const sel = document.getElementById('bpRoomType');
+  for(let i=0;i<sel.options.length;i++){
+    if(sel.options[i].text.includes(name)){sel.selectedIndex=i;break;}
+  }
+  calcTotal();
+  const badge = document.getElementById('selectedRoomBadge');
+  badge.textContent = `✓ ${name} selected — ₹${price.toLocaleString('en-IN')}/night`;
+  badge.classList.add('show');
+  showToast('Room Selected','Scroll up to complete your booking');
+}
+
+function calcTotal() {
+  const ci = document.getElementById('bpCheckIn').value;
+  const co = document.getElementById('bpCheckOut').value;
+  if(!ci||!co) return;
+  const nights = Math.max(1, Math.round((new Date(co)-new Date(ci))/86400000));
+  const pricePerNight = parseInt(document.getElementById('bpRoomType').value) || (currentHotel?.price||0);
+  const roomCost = pricePerNight * nights;
+  const tax = Math.round(roomCost * 0.18);
+  const total = roomCost + tax;
+
+  document.getElementById('totalNightsLabel').textContent = `${nights} night${nights>1?'s':''} × ₹${pricePerNight.toLocaleString('en-IN')}`;
+  document.getElementById('totalNightsCost').textContent = `₹${roomCost.toLocaleString('en-IN')}`;
+  document.getElementById('totalTax').textContent = `₹${tax.toLocaleString('en-IN')}`;
+  document.getElementById('totalGrand').textContent = `₹${total.toLocaleString('en-IN')}`;
+  document.getElementById('bookingTotal').style.display='block';
+}
+
+// ══════════════════════════════════════
+// BOOKING
+// ══════════════════════════════════════
+function initiateBooking() {
+  if(!currentUser) {
+    openSignIn();
+    showToast('Sign in required','Please sign in to complete your booking');
+    return;
+  }
+  const ci = document.getElementById('bpCheckIn').value;
+  const co = document.getElementById('bpCheckOut').value;
+  const guests = document.getElementById('bpGuests').value;
+  const roomSel = document.getElementById('bpRoomType');
+  const roomName = roomSel.options[roomSel.selectedIndex].text.split(' — ')[0];
+  const roomPrice = parseInt(roomSel.value) || currentHotel.price;
+  if(!ci||!co||new Date(co)<=new Date(ci)) {
+    showToast('Invalid Dates','Please check your check-in and check-out dates');
+    return;
+  }
+  const nights = Math.round((new Date(co)-new Date(ci))/86400000);
+  const roomCost = roomPrice * nights;
+  const tax = Math.round(roomCost*0.18);
+  const total = roomCost + tax;
+  const ref = 'LXS' + Date.now().toString(36).toUpperCase().slice(-6);
+
+  const booking = {
+    ref, hotelId: currentHotel.id, hotel: currentHotel.name, city: currentHotel.city,
+    room: roomName, checkIn: ci, checkOut: co, nights, guests, total, status:'Confirmed',
+    bookedAt: new Date().toISOString(), userEmail: currentUser.email
+  };
+  myBookings.push(booking);
+  localStorage.setItem('luxeBookings', JSON.stringify(myBookings));
+
+  // Show confirmation
+  document.getElementById('confirmRef').textContent = ref;
+  document.getElementById('confirmSubtitle').textContent = `Your stay at ${currentHotel.name} is confirmed. A confirmation email has been sent to ${currentUser.email}.`;
+  document.getElementById('confirmDetails').innerHTML = `
+    <div class="booking-detail-item"><div class="bd-label">Hotel</div><div class="bd-value">${currentHotel.name}</div></div>
+    <div class="booking-detail-item"><div class="bd-label">Room</div><div class="bd-value">${roomName}</div></div>
+    <div class="booking-detail-item"><div class="bd-label">Check In</div><div class="bd-value">${new Date(ci).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div></div>
+    <div class="booking-detail-item"><div class="bd-label">Check Out</div><div class="bd-value">${new Date(co).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div></div>
+    <div class="booking-detail-item"><div class="bd-label">Nights</div><div class="bd-value">${nights} night${nights>1?'s':''}</div></div>
+    <div class="booking-detail-item"><div class="bd-label">Guests</div><div class="bd-value">${guests}</div></div>
+    <div class="booking-detail-item"><div class="bd-label">Total Paid</div><div class="bd-value" style="color:var(--gold-light)">₹${total.toLocaleString('en-IN')}</div></div>
+    <div class="booking-detail-item"><div class="bd-label">Status</div><div class="bd-value" style="color:#4ade80">✓ Confirmed</div></div>`;
+  document.getElementById('confirmModal').classList.add('show');
+}
+
+function closeConfirm() {
+  document.getElementById('confirmModal').classList.remove('show');
+}
+
+function viewMyBookings() {
+  closeConfirm();
+  showMyBookings();
+}
+
+// ══════════════════════════════════════
+// MY BOOKINGS
+// ══════════════════════════════════════
+function showMyBookings() {
+  if(!currentUser) { openSignIn(); return; }
+  const userBookings = myBookings.filter(b=>b.userEmail===currentUser.email);
+  const listEl = document.getElementById('bookingsList');
+  document.getElementById('bookingsSubtitle').textContent = `${userBookings.length} booking${userBookings.length!==1?'s':''} · ${currentUser.name}`;
+  if(!userBookings.length) {
+    listEl.innerHTML = '<div style="text-align:center;padding:40px;color:rgba(168,85,247,0.5)">No bookings yet. Start exploring hotels!</div>';
+  } else {
+    listEl.innerHTML = [...userBookings].reverse().map(b=>`
+      <div class="booking-item">
+        <div>
+          <div class="booking-item-name">${b.hotel}</div>
+          <div class="booking-item-details">📍 ${b.city} · 🛏️ ${b.room} · 📅 ${new Date(b.checkIn).toLocaleDateString('en-IN',{day:'numeric',month:'short'})} → ${new Date(b.checkOut).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div>
+          <div class="booking-item-details" style="margin-top:4px;color:var(--gold-light)">₹${b.total.toLocaleString('en-IN')} total · Ref: ${b.ref}</div>
+        </div>
+        <span class="booking-status status-confirmed">✓ ${b.status}</span>
+      </div>`).join('');
+  }
+  document.getElementById('myBookingsModal').classList.add('show');
+}
+
+// ══════════════════════════════════════
+// AUTH
+// ══════════════════════════════════════
+function openSignIn() {
+  document.getElementById('signInModal').classList.add('show');
+  document.getElementById('loginError').classList.remove('show');
+}
+function closeSignIn() {
+  document.getElementById('signInModal').classList.remove('show');
+}
+function switchTab(tab) {
+  document.querySelectorAll('.modal-tab').forEach((t,i)=>t.classList.toggle('active', (tab==='login'&&i===0)||(tab==='register'&&i===1)));
+  document.getElementById('loginTab').classList.toggle('active', tab==='login');
+  document.getElementById('registerTab').classList.toggle('active', tab==='register');
+}
+
+function doLogin() {
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('loginPassword').value;
+  const user = registeredUsers[email];
+  if(!user || user.password !== pass) {
+    document.getElementById('loginError').classList.add('show');
+    return;
+  }
+  signInUser(user);
+}
+
+function doRegister() {
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim().toLowerCase();
+  const pass = document.getElementById('regPassword').value;
+  const errEl = document.getElementById('regError');
+  if(!name||!email||!pass) { errEl.textContent='Please fill in all fields.'; errEl.classList.add('show'); return; }
+  if(pass.length<6) { errEl.textContent='Password must be at least 6 characters.'; errEl.classList.add('show'); return; }
+  if(registeredUsers[email]) { errEl.textContent='An account with this email already exists.'; errEl.classList.add('show'); return; }
+  const user = {name, email, password: pass};
+  registeredUsers[email] = user;
+  localStorage.setItem('luxeUsers', JSON.stringify(registeredUsers));
+  signInUser(user);
+}
+
+function signInWithGoogle() {
+  // Simulate Google sign-in with a demo account
+  const user = {name:'Google User', email:'google@luxestay.com', password:'google'};
+  registeredUsers[user.email] = user;
+  localStorage.setItem('luxeUsers', JSON.stringify(registeredUsers));
+  signInUser(user);
+}
+
+function signInUser(user) {
+  currentUser = user;
+  closeSignIn();
+  // Update header
+  document.getElementById('signInBtn').style.display = 'none';
+  document.getElementById('userAvatar').style.display = 'flex';
+  document.getElementById('userAvatar').textContent = user.name.charAt(0).toUpperCase();
+  document.getElementById('userNameHeader').style.display = 'block';
+  document.getElementById('userNameHeader').textContent = user.name.split(' ')[0];
+  document.getElementById('myBookingsBtn').style.display = 'block';
+  showToast('Welcome back! 👋', `Signed in as ${user.name}`);
+}
+
+// ══════════════════════════════════════
+// SEARCH & FILTER
+// ══════════════════════════════════════
+function searchHotels(e) {
+  e.preventDefault();
+  const val = document.getElementById('searchCity').value.toLowerCase().trim();
+  const filtered = hotels.filter(h=>!val||h.name.toLowerCase().includes(val)||h.city.toLowerCase().includes(val)||h.state.toLowerCase().includes(val));
+  currentData = filtered;
+  document.getElementById('resultsHeading').textContent = val?`Results for "${val}"`:'Featured Properties';
+  renderHotels(filtered);
+  document.getElementById('hotels').scrollIntoView({behavior:'smooth',block:'start'});
+  showToast('Searching...', `Found ${filtered.length} properties`);
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  document.querySelector('.filter-chip').classList.add('active');
+}
+
+function liveSearch() {
+  const val = document.getElementById('searchCity').value.toLowerCase().trim();
+  if(!val){renderHotels(hotels);return}
+  renderHotels(hotels.filter(h=>h.name.toLowerCase().includes(val)||h.city.toLowerCase().includes(val)||h.state.toLowerCase().includes(val)));
+}
+
+function filterByCity(city, btn) {
+  const filtered = city==='all'?hotels:hotels.filter(h=>h.city===city||h.state===city);
+  currentData = filtered;
+  document.getElementById('resultsHeading').textContent = city==='all'?'Featured Properties':`Hotels in ${city}`;
+  document.getElementById('searchCity').value = city==='all'?'':city;
+  renderHotels(filtered);
+  if(btn){document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));btn.classList.add('active');}
+  document.getElementById('hotels').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function filterByState(state, btn) {
+  const filtered = hotels.filter(h=>h.state===state);
+  currentData = filtered;
+  document.getElementById('resultsHeading').textContent = `Hotels in ${state}`;
+  document.getElementById('searchCity').value = state;
+  renderHotels(filtered);
+  if(btn){document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));btn.classList.add('active');}
+  document.getElementById('hotels').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function filterBySidebar(val) {
+  const states = ['Andhra Pradesh','Tamil Nadu','Kerala','Rajasthan','Maharashtra','Goa','NCR','Karnataka','Telangana','West Bengal','Uttar Pradesh'];
+  if(states.includes(val)) filterByState(val,null);
+  else filterByCity(val,null);
+  document.getElementById('hotels').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ══════════════════════════════════════
+// LIGHTBOX
+// ══════════════════════════════════════
+function openLightbox(idx) {
+  lightboxIndex = idx;
+  document.getElementById('lightboxImg').src = lightboxImages[idx];
+  document.getElementById('lightboxCounter').textContent = `${idx+1} / ${lightboxImages.length}`;
+  document.getElementById('lightbox').classList.add('show');
+}
+function closeLightbox() { document.getElementById('lightbox').classList.remove('show'); }
+function lightboxNav(dir) {
+  lightboxIndex = (lightboxIndex+dir+lightboxImages.length)%lightboxImages.length;
+  document.getElementById('lightboxImg').src = lightboxImages[lightboxIndex];
+  document.getElementById('lightboxCounter').textContent = `${lightboxIndex+1} / ${lightboxImages.length}`;
+}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox();});
+document.addEventListener('keydown',e=>{if(document.getElementById('lightbox').classList.contains('show')){if(e.key==='ArrowRight')lightboxNav(1);if(e.key==='ArrowLeft')lightboxNav(-1);if(e.key==='Escape')closeLightbox();}});
+
+// ══════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════
+function showToast(title, msg) {
+  document.getElementById('toastTitle').textContent = title;
+  document.getElementById('toastMsg').textContent = msg;
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3800);
+}
+
+// Close modals on overlay click
+['signInModal','confirmModal','myBookingsModal'].forEach(id=>{
+  document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('show');});
+});
+
+// Nav scroll effect
+window.addEventListener('scroll',()=>{
+  document.querySelector('header').style.boxShadow = window.scrollY>40?'0 4px 40px rgba(124,58,237,0.25)':'0 4px 40px rgba(124,58,237,0.15)';
+});
+</script>
+</body>
+</html>
